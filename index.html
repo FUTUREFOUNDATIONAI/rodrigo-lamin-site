@@ -1,0 +1,798 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="solo">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Rodrigo Lamin — Toda empresa é um organismo vivo</title>
+<meta name="description" content="O próximo ciclo do seu negócio começa em você. Rodrigo Lamin ajuda empreendedores e líderes a transformar experiência e relações em crescimento, com o Método Árvore do Cultivo e a biomimética aplicada aos negócios.">
+<link rel="canonical" href="https://rodrigolamin.com.br/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Rodrigo Lamin">
+<meta property="og:title" content="Rodrigo Lamin — Toda empresa é um organismo vivo">
+<meta property="og:description" content="O próximo ciclo do seu negócio começa em você. Rodrigo Lamin ajuda empreendedores e líderes a transformar experiência e relações em crescimento, com o Método Árvore do Cultivo e a biomimética aplicada aos negócios.">
+<meta property="og:url" content="https://rodrigolamin.com.br/">
+<meta property="og:image" content="https://rodrigolamin.com.br/design-system/assets/fotos/rodrigo-lamin-roda-cor.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="design-system/assets/marca/araucaria-mark.svg">
+<link rel="stylesheet" href="design-system/tokens.css?v=20261016b">
+<link rel="stylesheet" href="design-system/components.css?v=20261016b">
+<link rel="stylesheet" href="design-system/conversa.css?v=20261016b">
+<style>
+/* Composição do site. Cores, tipo, espaço e movimento vêm de design-system/tokens.css */
+
+/* ---------- hero ----------
+   Duas colunas que nunca se cruzam: o texto ocupa o espaço à esquerda do retrato (--pw = largura do retrato).
+   A rede só cresce abaixo do peito e fora da coluna de texto (região passada ao Cultivo.mycelium). */
+.hero{--ph:min(86svh,860px,calc(100svh - 112px));--pw:min(560px, calc(var(--ph) * .62));position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;isolation:isolate}
+.hero .c-portrait{position:absolute;z-index:0;right:max(var(--gutter), calc((100vw - var(--max))/2 + var(--gutter)));bottom:0;width:var(--pw);height:auto;aspect-ratio:.62}
+/* a foto (952×1184) ocupa o topo do arco: sobra espaço sobre a cabeça e a base desvanece para o solo, onde a semente nasce */
+.hero .c-portrait img{position:absolute;top:0;left:0;width:100%;height:auto;object-fit:initial;-webkit-mask-image:linear-gradient(#000 64%,transparent 98%);mask-image:linear-gradient(#000 64%,transparent 98%)}
+.hero .c-mycelium{z-index:1;-webkit-mask-image:linear-gradient(#000 80%,transparent 99%);mask-image:linear-gradient(#000 80%,transparent 99%)}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:72px;z-index:1;background:linear-gradient(transparent,var(--ground-2));pointer-events:none}
+.hero-copy{position:relative;z-index:2;width:100%;max-width:var(--max);margin:0 auto;padding:clamp(96px,14vh,140px) calc(var(--pw) + var(--gutter) + clamp(80px,9vw,150px)) clamp(56px,9vh,110px) var(--gutter);pointer-events:none}
+.hero-copy > *{pointer-events:auto}
+.hero h1{max-width:12ch;font-size:min(var(--fs-hero),9.6svh,6.4vw)}
+.hero h1 span{color:var(--accent)}
+.hero .t-lede{margin-top:clamp(18px,3vh,32px)}
+.hero .t-lede strong{color:var(--ink);font-weight:500}
+.hero .actions{margin-top:clamp(22px,4vh,40px);display:flex;flex-wrap:wrap;gap:var(--s-3)}
+.hero .hint{margin-top:var(--s-4);font-family:var(--font-display);font-size:var(--fs-label);color:var(--ink-2)}
+@media (hover:none){.hero .hint{display:none}}
+@media (max-height:760px) and (min-width:901px){
+  .hero-copy{padding-top:92px;padding-bottom:48px}
+  .hero h1{font-size:min(var(--fs-hero),8.6svh,7vw)}
+  .hero .t-lede{font-size:16px;line-height:1.5;margin-top:clamp(18px,3.4svh,28px)}
+  .hero .actions{margin-top:clamp(18px,3.4svh,28px)}
+  .hero .hint{display:none}
+}
+@media (max-width:900px){
+  .hero{flex-direction:column;align-items:stretch;justify-content:flex-end;min-height:auto}
+  .hero-copy{order:1;padding:104px var(--gutter) 28px}
+  .hero h1{max-width:9ch;font-size:clamp(44px,13vw,64px)}
+  .hero .c-portrait{order:2;position:relative;right:auto;height:auto;width:min(72vw,330px);aspect-ratio:.62;margin:8px var(--gutter) 0 auto}
+}
+
+/* ---------- hero fixado (pin) ----------
+   Rolagem nativa: o container tem 220vh e o hero fica sticky por 120vh enquanto a rede cresce; depois solta. */
+.hero-pin{position:relative;height:220vh}
+.hero-pin > .hero{position:sticky;top:0;height:100vh;min-height:0}
+.pin-progress{position:absolute;z-index:3;right:calc(var(--gutter)/2);top:96px;bottom:64px;width:2px;border-radius:2px;background:var(--line);pointer-events:none;transition:opacity var(--dur-2)}
+.pin-progress i{display:block;width:100%;height:0;border-radius:2px;background:var(--accent)}
+.pin-progress i::after{content:"";position:absolute;left:50%;width:8px;height:8px;margin-left:-4px;border-radius:50%;background:var(--accent);top:var(--tip,0%)}
+.pin-progress.is-done{opacity:0}
+.pin-progress span{position:absolute;right:0;top:calc(100% + 14px);font-family:var(--font-display);font-size:var(--fs-label);color:var(--ink-3);white-space:nowrap;transition:top .1s linear}
+.hero .c-herotree{z-index:1}
+html{scroll-padding-top:76px}
+@media (max-width:900px), (max-height:440px){
+  .hero-pin{height:auto}
+  .hero-pin > .hero{position:relative;height:auto}
+  .pin-progress{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .hero-pin{height:auto}
+  .hero-pin > .hero{position:relative;height:auto;min-height:100svh}
+  .pin-progress{display:none}
+}
+
+/* ---------- trajetória ---------- */
+.traj{background:var(--ground-2);padding-bottom:clamp(64px,8vw,112px)}
+.forest{padding-top:var(--s-9);padding-bottom:var(--s-8)}
+
+/* ---------- método ---------- */
+.gestures{margin-top:clamp(80px,10vw,140px);display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(40px,6vw,96px);align-items:center}
+.gestures p{margin-top:18px}
+@media (max-width:900px){.gestures{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------- trajetória contada como história ---------- */
+.story-open{max-width:60rem}
+.story-title{font-size:clamp(34px,4.6vw,72px);letter-spacing:-.04em;line-height:1.12}
+.story-reveal{margin-top:clamp(20px,3vw,36px);font-family:var(--font-text);font-style:italic;font-size:clamp(24px,2.6vw,38px);color:var(--ink-2)}
+.story-reveal b{font-family:var(--font-display);font-style:normal;font-weight:700;color:var(--accent-text);letter-spacing:-.02em}
+.story{margin-top:clamp(48px,7vw,96px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,96px)}
+.story-trunk{position:sticky;top:max(90px,14svh);align-self:start;height:min(72svh,640px);display:flex;align-items:center;justify-content:center}
+.story-trunk .c-rings__trunk{width:100%;max-width:min(560px,72svh);transition:transform .2s linear}
+.ring-seed{position:absolute;left:50%;top:50%;width:22px;height:30px;margin:-15px 0 0 -11px;border-radius:50%;background:var(--accent);opacity:0;pointer-events:none}
+.beat{min-height:min(70svh,620px);display:flex;flex-direction:column;justify-content:center;gap:14px;opacity:.4;transition:opacity var(--dur-2)}
+.beat.is-on{opacity:1}
+.beat-when{font-family:var(--font-display);font-size:var(--fs-label);font-weight:600;color:var(--accent-text);font-variant-numeric:tabular-nums}
+.beat h3{font-size:clamp(30px,3.4vw,52px)}
+.beat p{color:var(--ink-2);max-width:32em}
+.beat p strong{color:var(--ink);font-weight:500}
+.beat-quote{margin:4px 0;padding-left:18px;border-left:2px solid var(--accent);font-family:var(--font-text);font-style:italic;font-size:clamp(19px,1.6vw,24px);line-height:1.4;color:var(--ink)}
+.story-years{margin-top:clamp(40px,6vw,80px)}
+.story-years__t{font-family:var(--font-display);font-weight:600;font-size:17px;cursor:pointer;color:var(--ink-2);margin-bottom:16px;list-style:none;display:inline-flex;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid var(--line-strong)}
+.story-years__t::-webkit-details-marker{display:none}
+.story-years__t::after{content:'+';color:var(--accent-text);font-size:20px;line-height:1}
+.story-years[open] .story-years__t::after{content:'−'}
+.story-years__t:hover{color:var(--ink)}
+/* ponte para o método: a semente que recebe o fim da trajetória */
+.mac-seed{display:block;width:40px;height:120px;margin:0 0 24px 4px;overflow:visible}
+.mac-seed ellipse{fill:var(--accent)}
+.mac-seed__root{fill:none;stroke:var(--accent);stroke-width:2;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100;transition:stroke-dashoffset 1.6s var(--ease-grow)}
+.mac-seed.is-in .mac-seed__root{stroke-dashoffset:0}
+.mac-bridge{font-family:var(--font-text);font-size:clamp(20px,1.9vw,28px);line-height:1.5;color:var(--ink-2);max-width:34em;margin-bottom:clamp(32px,4vw,56px)}
+@media (max-width:900px){
+  .story{grid-template-columns:minmax(0,1fr)}
+  .story-trunk{top:76px;height:34svh;z-index:2;background:var(--ground-2)}
+  .story-trunk .c-rings__trunk{max-width:34svh}
+  .beat{min-height:auto;padding-block:40px;opacity:1}
+}
+@media (prefers-reduced-motion:reduce){.mac-seed__root{transition:none;stroke-dashoffset:0}.beat{opacity:1}}
+
+/* ---------- método: o coração da página ---------- */
+.method{padding-top:clamp(96px,12vw,170px)}
+.mac-open{max-width:62rem}
+.mac-title{font-size:clamp(46px,7.2vw,116px);letter-spacing:-.05em;line-height:.92;max-width:12ch}
+.mac-thesis{margin-top:clamp(24px,3vw,40px);font-family:var(--font-text);font-style:italic;font-size:clamp(26px,3vw,44px);line-height:1.3;color:var(--ink-2)}
+.mac-thesis span{color:var(--accent-text);font-style:normal;font-family:var(--font-display);font-weight:700;letter-spacing:-.02em}
+.mac-open .t-lede{margin-top:24px}
+.mac-layers{list-style:none;margin:clamp(64px,8vw,112px) 0 0;padding:0;display:grid;grid-template-columns:minmax(0,1fr) 48px minmax(0,1fr) 48px minmax(0,1fr);gap:20px;align-items:start}
+.mac-layers li{display:flex;flex-direction:column;gap:10px}
+.mac-layers b{font-family:var(--font-display);font-size:clamp(26px,2.8vw,40px);letter-spacing:-.03em;line-height:1.05}
+.mac-layers p{color:var(--ink-2);font-size:16.5px;line-height:1.5}
+.mac-k{font-family:var(--font-display);font-size:var(--fs-label);font-weight:600;color:var(--accent-text)}
+.mac-arrow{color:var(--ink-3);padding-top:44px}
+.mac-arrow svg{width:48px;height:16px}
+.mac-sub{font-size:var(--fs-3);margin:clamp(80px,10vw,140px) 0 0}
+.method .c-mac{margin-top:24px}
+@media (min-width:901px){
+  .method .c-mac{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)}
+  .method .c-mac__tree{height:calc(100svh - 110px);max-height:900px}
+}
+.mac-pillars .c-strata{margin-top:clamp(32px,4vw,56px)}
+.bio{margin-top:clamp(120px,14vw,200px)}
+.bio .t-lede{margin-top:18px}
+
+
+
+
+
+.mac-paths__grid{margin-top:24px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px}
+.mac-cta{margin-top:clamp(48px,6vw,80px)}
+.method{padding-bottom:var(--s-8)}
+@media (max-width:900px){
+  .mac-layers{grid-template-columns:minmax(0,1fr);gap:8px}
+  .mac-arrow{padding:0;transform:rotate(90deg);width:48px}
+  .mac-paths__grid{grid-template-columns:minmax(0,1fr)}
+}
+
+/* ---------- ALTITUDE ----------
+   Tudo em fluxo normal: marco de altitude, título e programação empilham sem sobrepor em nenhuma altura de tela. */
+.altitude{position:relative;overflow:hidden;isolation:isolate;padding-block:clamp(96px,12vh,128px) var(--s-8)}
+.altitude .photo{position:absolute;inset:0;z-index:-2}
+.altitude .photo img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;transform:scale(1.08);transform-origin:50% 100%}
+.altitude::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(29,30,43,.5) 0%,rgba(29,30,43,.08) 20%,rgba(29,30,43,.15) 38%,rgba(29,30,43,.82) 62%,var(--ground) 100%)}
+.alt-mark{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 14px;font-family:var(--font-display);color:#fff8ec;margin:0 0 clamp(56px,16vh,180px)}
+.alt-mark b{font-size:clamp(64px,12vw,200px);letter-spacing:-.06em;line-height:.85;font-weight:700}
+.alt-mark span{font-size:clamp(20px,2.4vw,36px);font-weight:600}
+.alt-body .grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(32px,6vw,96px);align-items:end}
+.alt-body .sub{margin-top:20px;max-width:30em}
+.alt-body .meta{margin-top:18px;font-family:var(--font-display);font-size:16px;color:var(--ink-2)}
+.alt-cta{margin-top:34px;display:flex;flex-wrap:wrap;align-items:center;gap:14px 26px}
+.alt-cta .price{font-family:var(--font-display);font-size:16px;color:var(--ink-2);max-width:34em}
+.alt-cta .price b{color:var(--ink);font-size:22px;letter-spacing:-.02em}
+@media (max-width:1100px){.alt-body .grid{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:900px){.alt-mark{margin-bottom:clamp(140px,34svh,280px)}}
+@media (prefers-reduced-motion:reduce){.altitude .photo img{transform:none}}
+
+/* ---------- rede ---------- */
+.forest{overflow:hidden}
+.forest .top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:clamp(32px,6vw,96px);align-items:end}
+.forest-svg{margin-top:clamp(56px,7vw,96px);width:100%;height:auto;display:block;overflow:visible}
+.forest-svg .hyph{fill:none;stroke:var(--ink);stroke-opacity:.32;stroke-width:1.2}
+.forest-svg .flow{fill:none;stroke:var(--accent);stroke-width:2.2;stroke-linecap:round;stroke-dasharray:3 46;animation:flow 3.6s linear infinite}
+.forest-svg .flow.b{animation-duration:4.8s;animation-delay:-1.2s}
+.forest-svg .flow.c{animation-duration:5.6s;animation-delay:-2.4s}
+@keyframes flow{to{stroke-dashoffset:-245}}
+.forest-svg text{font-family:var(--font-display);fill:var(--ink)}
+.forest-svg .lbl{font-size:23px;font-weight:700;letter-spacing:-.02em}
+.forest-svg .cap{font-size:18px;fill:var(--ink-2)}
+.forest-svg .ground{stroke:var(--ink-3);stroke-opacity:.5}
+.forest-svg use{color:var(--ink)}
+.forest-svg .tree{fill:none;stroke:var(--ink);stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+.forest-svg .tree.hero{stroke:var(--accent)}
+.forest-svg .node{fill:var(--accent)}
+.forest-list{display:none}
+@media (max-width:760px){.forest .top{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:1100px){
+  .forest-svg .lbl,.forest-svg .cap{display:none}
+  .forest-list{display:block;list-style:none;margin:28px 0 0;padding:0;border-top:1px solid var(--line)}
+  .forest-list li{padding:16px 0;border-bottom:1px solid var(--line)}
+  .forest-list b{display:block;font-family:var(--font-display);font-size:21px;letter-spacing:-.02em}
+  .forest-list span{color:var(--ink-2);font-size:16px}
+}
+@media (prefers-reduced-motion:reduce){.forest-svg .flow{animation:none;stroke-dasharray:none;stroke-opacity:.5}}
+
+/* ---------- fechamento ---------- */
+.close .c-wrap{padding-block:var(--s-9);display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:clamp(32px,6vw,96px);align-items:center}
+.close h2{font-size:clamp(50px,7.6vw,124px);letter-spacing:-.05em}
+.close p{margin-top:24px}
+.close-arau{width:100%;max-width:300px;justify-self:end;aspect-ratio:400/470;color:var(--ink)}
+.close-arau.c-tree path{stroke:var(--ink)}
+.close-arau .fruitdot{fill:var(--c-fogo-500);stroke:var(--c-fogo-tinta);stroke-width:1.5}
+@media (max-width:900px){.close .c-wrap{grid-template-columns:minmax(0,1fr)}.close-arau{justify-self:start;max-width:170px}}
+/* ---------- ponto de partida (dores) ---------- */
+.pain{padding-top:clamp(96px,11vw,150px);padding-bottom:clamp(80px,9vw,120px)}
+.pain-open{max-width:58rem}
+.pain-open h2 span,.faq h2 span{display:block;color:var(--ink-2)}
+.pain-open .t-lede{margin-top:24px;max-width:38em}
+
+/* ---------- etapas: a barra de etapas fica presa enquanto a árvore cresce ---------- */
+@media (min-width:901px){
+  .method .c-mac__tree{top:150px;height:calc(100svh - 170px)}
+}
+
+/* ---------- caminhos ---------- */
+.mac-paths{margin-top:clamp(120px,14vw,200px)}
+.mac-paths .mac-sub{margin-top:0}
+
+/* ---------- fechamento, perguntas e conversa ---------- */
+.close{background:var(--ground-2)}
+.close-sign{margin-top:22px;font-family:var(--font-text);font-style:italic;font-size:var(--fs-4);color:var(--accent-text)}
+.faq{padding-block:var(--s-9)}
+.faq .c-wrap{max-width:min(var(--max),1040px)}
+.cta-final .c-wrap{padding-block:var(--s-9);display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:clamp(32px,6vw,96px);align-items:stretch}
+.cta-final h2{font-size:clamp(46px,6.6vw,108px);letter-spacing:-.045em;max-width:13ch}
+.cta-final .t-lede{margin-top:24px;max-width:34em}
+.cta-conversa{margin-top:32px}
+.cta-note{margin-top:16px;font-family:var(--font-display);font-size:var(--fs-small);color:var(--ink-2)}
+.cta-final .c-seedrain{min-height:360px}
+@media (max-width:900px){.cta-final .c-wrap{grid-template-columns:minmax(0,1fr)}.cta-final .c-seedrain{min-height:200px;order:-1}}
+footer b{color:var(--ink-2);font-weight:700}
+footer .c-wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 24px;padding-block:26px;font-family:var(--font-display);font-size:var(--fs-label);color:var(--ink-3)}
+</style>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-54VT9MGHJH"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','G-54VT9MGHJH');
+</script>
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1421057743489136');fbq('track','PageView');
+</script>
+<!-- Conversões: abrir a conversa = Contact; ir para o WhatsApp = Lead -->
+<script>
+document.addEventListener('click',function(e){
+  var a=e.target.closest&&e.target.closest('a');if(!a)return;
+  var label=(a.textContent||'').trim().slice(0,80);
+  if(a.hasAttribute('data-conversa-open')){gtag('event','open_conversation',{link_text:label});fbq('track','Contact');}
+  else if(/wa\.me\//.test(a.href)){gtag('event','generate_lead',{method:'whatsapp',link_text:label});fbq('track','Lead');}
+},true);
+</script>
+</head>
+<body>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1421057743489136&ev=PageView&noscript=1" alt=""></noscript>
+
+<a class="c-skip" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="c-nav" id="nav">
+  <div class="c-wrap c-nav__in">
+    <a class="c-brand" href="#topo" aria-label="Rodrigo Lamin, início">
+      <svg viewBox="160 136 704 704" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="44" stroke-linecap="round" stroke-linejoin="round"><line x1="512" y1="178" x2="512" y2="805"/><path d="M512 230L235 275M512 230L789 275M512 350L280 392M512 350L744 392M512 470L326 507M512 470L698 507M512 590L374 621M512 590L650 621"/></g></svg>
+      <span class="c-brand__name">Rodrigo Lamin<span class="c-brand__tag">Biomimética aplicada aos negócios</span></span>
+    </a>
+    <nav aria-label="Principal"><ul>
+      <li><a href="#trajetoria">Trajetória</a></li>
+      <li><a href="#metodo">Método</a></li>
+      <li><a href="#altitude">ALTITUDE</a></li>
+      <li><a href="#rede">Rede</a></li>
+    </ul></nav>
+    <a data-conversa-open data-avatar="design-system/assets/fotos/rodrigo-lamin-roda.jpg" class="c-btn c-btn--primary c-btn--small" href="https://wa.me/5548991469196" target="_blank" rel="noopener">Conversar</a>
+  </div>
+</header>
+
+<main id="conteudo">
+
+<div class="hero-pin" id="heroPin">
+<section class="hero" id="topo" aria-label="Apresentação" data-no-trail>
+  <div class="pin-progress" aria-hidden="true"><i id="pinBar"></i></div>
+  <div class="c-portrait"><img src="design-system/assets/fotos/rodrigo-lamin-roda.jpg" alt="Rodrigo Lamin sorrindo, de camiseta escura, numa Roda de Liderança" width="952" height="1184" fetchpriority="high"></div>
+  <svg class="c-herotree" id="heroTree" aria-hidden="true"></svg>
+  <div class="hero-copy">
+    <div class="shade" aria-hidden="true"></div>
+    <h1 class="t-hero">Toda empresa é um organismo <span>vivo.</span></h1>
+    <p class="t-lede"><strong>O próximo ciclo do seu negócio começa em você.</strong> Ajudo empreendedores e líderes a transformar experiência e relações em crescimento, com clareza sobre o que construir e o impacto que querem deixar.</p>
+    <div class="actions">
+      <a data-conversa-open data-avatar="design-system/assets/fotos/rodrigo-lamin-roda.jpg" class="c-btn c-btn--primary" href="https://wa.me/5548991469196" target="_blank" rel="noopener">Conversar sobre o próximo ciclo
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 15L15 5M7 5h8v8"/></svg></a>
+      <a class="c-btn c-btn--ghost" href="#metodo">Conhecer o método</a>
+    </div>
+    <p class="hint" id="heroHint" aria-hidden="true">Continue rolando: a rede cresce.</p>
+  </div>
+</section>
+</div>
+
+<section class="pain c-section" id="ponto-de-partida" aria-labelledby="t-pain">
+  <div class="c-wrap">
+    <header class="pain-open">
+      <h2 id="t-pain" class="t-1 c-grow">Seu negócio cresceu. <span>E o esforço para cuidar dele?</span></h2>
+      <p class="t-lede c-grow">Quando tudo pede atenção, fica difícil saber onde agir. A mentoria começa pelos desafios que você vive hoje e pelo que precisa mudar para o negócio seguir crescendo.</p>
+    </header>
+    <ol class="c-tension">
+      <li class="c-tension__item c-grow">
+        <figure class="c-tension__fig" aria-hidden="true">
+          <svg viewBox="0 0 360 240">
+            <path class="tz-ground" d="M20 170 H340"/>
+            <path class="tz-root" d="M180 171 C172 190 156 200 140 212 M180 171 C190 192 204 200 222 210 M180 172 C181 190 178 204 181 220"/>
+            <g class="tz-wood" stroke-width="3">
+              <path class="tz-shoot" pathLength="1" d="M180 170 C176 146 150 124 118 114"/>
+              <path class="tz-shoot" pathLength="1" d="M180 170 C178 142 168 114 156 94"/>
+              <path class="tz-shoot tz-pick" pathLength="1" stroke-width="4" d="M180 170 C183 132 186 92 183 46"/>
+              <path class="tz-shoot" pathLength="1" d="M180 170 C184 142 200 116 216 100"/>
+              <path class="tz-shoot" pathLength="1" d="M180 170 C188 148 222 130 252 124"/>
+            </g>
+            <g>
+              <ellipse class="tz-leaf tz-tip" cx="112" cy="110" rx="9" ry="4" transform="rotate(-24 112 110)"/>
+              <ellipse class="tz-leaf tz-tip" cx="152" cy="88" rx="9" ry="4" transform="rotate(-58 152 88)"/>
+              <ellipse class="tz-leaf tz-tip tz-pick" cx="176" cy="44" rx="10" ry="4.5" transform="rotate(-40 176 44)"/>
+              <ellipse class="tz-leaf tz-tip tz-pick" cx="191" cy="50" rx="10" ry="4.5" transform="rotate(36 191 50)"/>
+              <ellipse class="tz-leaf tz-tip" cx="221" cy="94" rx="9" ry="4" transform="rotate(48 221 94)"/>
+              <ellipse class="tz-leaf tz-tip" cx="259" cy="121" rx="9" ry="4" transform="rotate(14 259 121)"/>
+            </g>
+          </svg>
+        </figure>
+        <h3>Direção</h3>
+        <p class="c-tension__q">Tudo parece urgente. O que vem primeiro?</p>
+        <p>Escolher o que merece seu tempo e seu investimento, e o que pode esperar.</p>
+      </li>
+      <li class="c-tension__item c-grow">
+        <figure class="c-tension__fig" aria-hidden="true">
+          <svg viewBox="0 0 360 240">
+            <path class="tz-ground" d="M20 170 H340"/>
+            <g transform="translate(180 170)" data-mt="44" data-h="120"></g>
+            <path class="tz-root" d="M180 171 C168 186 146 194 124 204 M180 171 C192 188 214 196 238 204 M180 172 C178 188 182 198 179 212"/>
+            <circle class="tz-drop" cx="124" cy="206" r="3.6"/>
+            <circle class="tz-drop b" cx="238" cy="206" r="3.6"/>
+            <circle class="tz-drop c" cx="179" cy="214" r="3.6"/>
+          </svg>
+        </figure>
+        <h3>Recursos</h3>
+        <p class="c-tension__q">Você faz cada vez mais. O resultado acompanha?</p>
+        <p>Encontrar onde tempo, dinheiro e energia se perdem e testar formas mais simples de trabalhar.</p>
+      </li>
+      <li class="c-tension__item c-grow">
+        <figure class="c-tension__fig" aria-hidden="true">
+          <svg viewBox="0 0 360 240">
+            <path class="tz-ground" d="M20 170 H340"/>
+            <g transform="translate(106 170)" data-mt="58" data-h="112"></g>
+            <g transform="translate(262 170)" data-mt="63" data-h="94"></g>
+            <path class="tz-root" d="M106 171 C100 184 92 190 82 196 M262 171 C268 182 276 188 286 192"/>
+            <path class="tz-link" pathLength="1" d="M106 172 C134 222 236 222 262 172"/>
+            <path class="tz-pulse" d="M106 172 C134 222 236 222 262 172"/>
+            <path class="tz-pulse back" d="M106 172 C134 222 236 222 262 172"/>
+          </svg>
+        </figure>
+        <h3>Relações</h3>
+        <p class="c-tension__q">Há bons clientes. Como crescer com eles?</p>
+        <p>Criar motivos para as pessoas voltarem, indicarem sua empresa e construírem parcerias com você.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="traj c-section" id="trajetoria" aria-labelledby="t-traj">
+  <div class="c-wrap">
+    <header class="story-open">
+      <h2 id="t-traj" class="story-title c-grow">Meu último negócio começou no quarto da minha casa, sem investidor, e faturou dezenas de milhões de reais.</h2>
+      <p class="story-reveal c-grow">Ele se chamava <b>Involves</b>.</p>
+    </header>
+    <div class="story">
+      <div class="story-trunk">
+        <div class="c-rings__trunk" id="trunkWrap">
+          <svg id="trunk" viewBox="-250 -250 500 500" role="img" aria-label="Corte de tronco com os anéis da trajetória de Rodrigo Lamin, de 2008 a 2026"></svg>
+          <div class="c-rings__readout" id="ro" aria-live="polite"><b></b><span></span></div>
+          <span class="ring-seed" aria-hidden="true"></span>
+        </div>
+      </div>
+      <div class="story-beats">
+        <article class="beat" data-ring="0">
+          <span class="beat-when">2008</span>
+          <h3>O quarto</h3>
+          <p>Comecei no quarto da minha casa, sem investimento externo. Convenci meus sócios a entrar num projeto que, na época, não tinha nada. O que existia era a vontade de construir algo relevante, que reunisse pessoas.</p>
+        </article>
+        <article class="beat" data-ring="5">
+          <span class="beat-when">2014–2017</span>
+          <h3>Os anéis largos</h3>
+          <p>Por dez anos, construí produto, vendas, grandes contas, cultura e expansão internacional. Construímos uma comunidade em torno do trade marketing, e ela nos deu escala, posicionamento e autoridade.</p>
+          <p>A receita foi de R$ 2,4 milhões em 2014 a R$ 18 milhões em 2017, com capital próprio: <strong>R$ 37,2 milhões somados em quatro anos.</strong> Em 2016, fomos o 1º lugar no GPTW Brasil em Tecnologia, entre as pequenas empresas.</p>
+        </article>
+        <article class="beat" data-ring="7">
+          <span class="beat-when">2018–2024</span>
+          <h3>A pergunta</h3>
+          <p>Em 2018, a Involves seguiu para um novo ciclo de gestão, presente em 17 países. Eu segui para outra busca.</p>
+          <blockquote class="beat-quote">“Depois de muitos anos perseguindo crescimento, hoje me interessa cada vez mais compreender o que faz um crescimento valer a pena.”</blockquote>
+          <p>Passei por processos de autoconhecimento, como a Busca da Visão, e voltei com outra pergunta sobre negócios.</p>
+        </article>
+        <article class="beat" data-ring="9">
+          <span class="beat-when">Hoje</span>
+          <h3>O método</h3>
+          <p>Hoje transformo o que vivi em método. Do Gigante do PDV às Rodas de Liderança, cultivo comunidades. E ajudo empreendedores e líderes a cultivar o próximo ciclo dos seus negócios.</p>
+        </article>
+        <details class="story-years">
+          <summary class="story-years__t">Ver números ano a ano</summary>
+          <ul class="c-rings__list" id="years"></ul>
+          <p class="t-small" style="margin-top:18px">Largura dos anéis de 2014 a 2017 proporcional ao faturamento anual da Involves. Fonte: série pública em rodrigolamin.com.br/involves.</p>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="method c-section" id="metodo" aria-labelledby="t-met">
+  <div class="c-wrap">
+    <header class="mac-open">
+      <svg class="mac-seed" id="macSeed" viewBox="0 0 40 120" aria-hidden="true"><path class="mac-seed__root" d="M20 30 C 22 60, 16 80, 20 118" /><ellipse cx="20" cy="22" rx="8" ry="11" /></svg>
+      <p class="mac-bridge c-grow">Toda essa experiência me fez entender que uma empresa não é uma máquina. É um organismo vivo. Na Involves, eu não construí só um produto: apliquei um jeito de cultivar pessoas, relações e comunidade. Depois de anos perseguindo crescimento, fui à natureza entender o que faz um crescimento valer a pena. Foi lá que esse jeito ganhou nome:</p>
+      <h2 id="t-met" class="mac-title c-grow">Metodologia Árvore do Cultivo</h2>
+      <p class="mac-thesis c-grow">A natureza sabe crescer. <span>O que podemos aprender com ela?</span></p>
+      <p class="t-lede c-grow">Biomimética é aprender com a natureza para resolver desafios. Na Metodologia Árvore do Cultivo (MAC), uso esse olhar para trabalhar decisões do seu negócio: cuidar da base, usar bem os recursos e fortalecer relações.</p>
+      <ol class="c-seq c-grow" aria-label="O ciclo do método">
+        <li>Aprenda.</li><li>Aplique.</li><li>Acompanhe.</li><li>Ajuste.<svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 15a9 9 0 1 1-2.6-6.4"/><path d="M22 4v5h-5"/></svg></li>
+      </ol>
+    </header>
+
+    <ol class="mac-layers" aria-label="As três camadas do método">
+      <li class="c-grow"><span class="mac-k">Antes da semente</span><b>Cultivador</b><p>Sua história, suas convicções, suas forças e o que faz seus olhos brilharem. O negócio começa em uma pessoa.</p></li>
+      <li class="mac-arrow" aria-hidden="true"><svg viewBox="0 0 48 16"><path d="M2 8h40m-8-6 8 6-8 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
+      <li class="c-grow"><span class="mac-k">Da raiz aos frutos</span><b>Árvore do negócio</b><p>Uma leitura do negócio, das relações e do ambiente para escolher prioridades e transformar estratégia em ação.</p></li>
+      <li class="mac-arrow" aria-hidden="true"><svg viewBox="0 0 48 16"><path d="M2 8h40m-8-6 8 6-8 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
+      <li class="c-grow"><span class="mac-k">O ciclo continua</span><b>Novas sementes</b><p>Resultados que sustentam o negócio e se transformam em novas sementes de valor para outras pessoas.</p></li>
+    </ol>
+
+    <div class="mac-pillars" id="pilares">
+      <h3 class="mac-sub c-grow">Três pilares, uma árvore</h3>
+      <div class="c-strata" id="strata">
+        <figure class="c-strata__fig" aria-hidden="true"><svg></svg></figure>
+        <ol class="c-strata__list">
+          <li class="c-strata__item c-grow" data-layer="0" tabindex="0"><b>Base forte <span class="c-strata__part">raízes · saiba o que sustenta</span></b><p>Uma árvore depende de suas raízes. No negócio, olhamos para o valor que você entrega, seus clientes e o que mantém a empresa de pé.</p></li>
+          <li class="c-strata__item c-grow" data-layer="1" tabindex="0"><b>Boas condições <span class="c-strata__part">solo e tronco · cuide do que faz crescer</span></b><p>Crescer depende do ambiente. Por isso, analisamos sua equipe, seus recursos e as relações que ajudam ou dificultam o trabalho.</p></li>
+          <li class="c-strata__item c-grow" data-layer="2" tabindex="0"><b>Novos ciclos <span class="c-strata__part">copa e sementes · aprenda e ajuste</span></b><p>A natureza se adapta às condições ao redor. No negócio, testamos ações, acompanhamos os resultados e ajustamos o caminho.</p></li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="mac-steps-wrap">
+      <h3 class="mac-sub c-grow">Da natureza para a sua rotina.</h3>
+      <nav class="c-steps" aria-label="Etapas do método"><a href="#etapa-leitura">Leitura</a><a href="#etapa-raizes">Raízes</a><a href="#etapa-solo">Solo</a><a href="#etapa-copa">Copa</a><a href="#etapa-frutos">Frutos</a><a href="#etapa-sementes">Sementes</a></nav>
+    <div class="c-mac" id="mac">
+      <div class="c-mac__tree" aria-hidden="true">
+        <svg></svg>
+      </div>
+      <ol class="c-mac__moves">
+        <li class="c-mac__move" id="etapa-leitura" data-p="0"><span class="n">1 de 6</span><h3>Leitura<small>Entenda onde agir primeiro.</small></h3><p>Olhamos para como você vende, quem compra e onde estão os principais obstáculos. Escolhemos uma prioridade e um primeiro passo possível.</p><p class="t-question">O que mais precisa da sua atenção agora?</p></li>
+        <li class="c-mac__move" id="etapa-raizes" data-p="1"><span class="n">2 de 6</span><h3>Raízes<small>Deixe claro por que escolher você.</small></h3><p>Identificamos o que sua empresa faz bem e o valor que entrega. Isso orienta sua oferta, sua comunicação e as decisões sobre o que manter ou mudar.</p><p class="t-question">Por que um cliente escolhe a sua empresa?</p></li>
+        <li class="c-mac__move" id="etapa-solo" data-p="2"><span class="n">3 de 6</span><h3>Solo<small>Crie condições para o trabalho render.</small></h3><p>Olhamos para a rotina, o tempo e os recursos da equipe. Buscamos o que pode ser simplificado para que as pessoas trabalhem melhor juntas.</p><p class="t-question">O que está ajudando ou atrapalhando o seu crescimento?</p></li>
+        <li class="c-mac__move" id="etapa-copa" data-p="3"><span class="n">4 de 6</span><h3>Copa<small>Transforme relações em oportunidades.</small></h3><p>Pensamos em formas de aproximar clientes, parceiros e pessoas da sua rede. Trocas e ações em conjunto podem abrir novas oportunidades para o negócio.</p><p class="t-question">Com quem você pode construir algo melhor?</p></li>
+        <li class="c-mac__move" id="etapa-frutos" data-p="4"><span class="n">5 de 6</span><h3>Frutos<small>Veja o que está dando resultado.</small></h3><p>Acompanhamos sinais simples: novas vendas, clientes que voltam, indicações e custos. Assim, você decide com mais clareza o que merece continuar.</p><p class="t-question">O que mudou depois das ações que você colocou em prática?</p></li>
+        <li class="c-mac__move" id="etapa-sementes" data-p="5"><span class="n">6 de 6</span><h3>Sementes<small>Use o aprendizado no próximo passo.</small></h3><p>O que funcionou pode ser repetido e melhorado. O que não funcionou ajuda a fazer novas escolhas. Cada ação traz aprendizado para o próximo passo.</p><p class="t-question">O que vale repetir, melhorar ou deixar para trás?</p></li>
+      </ol>
+    </div>
+    </div>
+
+    <div class="gestures">
+      <div class="c-grow">
+        <h3 class="t-2">Uma prática contínua.</h3>
+        <p class="t-muted">Quatro gestos que se repetem a cada ciclo, com a humildade de quem aprendeu na montanha que sempre há mais para aprender.</p>
+      </div>
+      <div class="c-cycle c-grow" id="cycle">
+        <svg class="orbit" viewBox="0 0 100 100" aria-hidden="true"><circle class="path" cx="50" cy="50" r="41"/><circle class="dot" cx="50" cy="9" r="1.6"/></svg>
+        <div class="c-gesture"><div class="ic"><svg viewBox="0 0 128 128" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M92 38 A38 38 0 1 0 92 90"/><circle cx="64" cy="64" r="5" fill="currentColor"/></svg></div><b>Escutar</b><span>investigar sem antecipar</span></div>
+        <div class="c-gesture"><div class="ic"><svg viewBox="0 0 128 128" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" aria-hidden="true"><circle cx="64" cy="64" r="34"/><circle cx="64" cy="64" r="12" fill="currentColor"/></svg></div><b>Decidir</b><span>dar centro ao essencial</span></div>
+        <div class="c-gesture"><div class="ic"><svg viewBox="0 0 128 128" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M64 100V56"/><path d="M64 70C64 52 50 40 32 40c0 18 14 30 32 30z"/><path d="M64 60c0-16 12-26 28-26 0 16-12 26-28 26z"/></svg></div><b>Cultivar</b><span>cuidar do que merece forma</span></div>
+        <div class="c-gesture"><div class="ic"><svg viewBox="0 0 128 128" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M96 64a32 32 0 1 1-9.4-22.6"/><path d="M90 26v16H74"/></svg></div><b>Revisar</b><span>aprender e ajustar</span></div>
+      </div>
+    </div>
+
+    <section class="bio" aria-labelledby="t-bio">
+      <h3 id="t-bio" class="t-2 c-grow">Biomimética: o que a natureza ensina sobre crescer</h3>
+      <p class="t-lede c-grow">A biomimética observa sistemas vivos para compreender estratégias desenvolvidas pela vida ao longo do tempo. O método não tenta fazer uma empresa parecer com a natureza: usa essa inteligência para pensar crescimento, adaptação e prosperidade.</p>
+      <ol class="bio-list">
+        <li class="c-principle c-grow">
+          <figure class="c-principle__fig" data-bio="coop" aria-hidden="true"><svg></svg></figure>
+          <b>Cooperar para prosperar<sup><a href="#bio-n1" id="bio-r1" aria-label="Nota 1">1</a></sup></b>
+          <p>Árvores trocam carbono por redes de fungos micorrízicos no solo. Em campo, bétulas e abetos-de-douglas trocaram carbono através dessas conexões.</p>
+          <p class="c-principle__biz"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3v9a5 5 0 0 0 5 5h10M15 12l5 5-5 5"/></svg><span><strong>No negócio:</strong> a comunidade como sistema de troca, não como canal.</span></p>
+        </li>
+        <li class="c-principle c-grow">
+          <figure class="c-principle__fig" data-bio="grow" aria-hidden="true"><svg></svg></figure>
+          <b>Crescer de baixo para cima<sup><a href="#bio-n2" id="bio-r2" aria-label="Nota 2">2</a></sup></b>
+          <p>A vida integra desenvolvimento e crescimento: se auto-organiza, constrói de baixo para cima e combina componentes modulares.</p>
+          <p class="c-principle__biz"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3v9a5 5 0 0 0 5 5h10M15 12l5 5-5 5"/></svg><span><strong>No negócio:</strong> raízes e solo antes da copa.</span></p>
+        </li>
+        <li class="c-principle c-grow">
+          <figure class="c-principle__fig" data-bio="light" aria-hidden="true"><svg></svg></figure>
+          <b>Responder ao lugar<sup><a href="#bio-n3" id="bio-r3" aria-label="Nota 3">3</a></sup></b>
+          <p>Organismos prosperam quando estão sintonizados com o ambiente local e respondem a ele.</p>
+          <p class="c-principle__biz"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3v9a5 5 0 0 0 5 5h10M15 12l5 5-5 5"/></svg><span><strong>No negócio:</strong> ler clientes, canais e relações antes de decidir como crescer.</span></p>
+        </li>
+      </ol>
+      <ol class="bio-notes" aria-label="Fontes">
+        <li id="bio-n1">Simard et al., “Net transfer of carbon between ectomycorrhizal tree species in the field”, <i>Nature</i> 388, 1997. <a href="#bio-r1" class="bio-back">voltar ao texto</a></li>
+        <li id="bio-n2">Biomimicry 3.8, <i>Life’s Principles</i>: “Integrate development with growth”. <a href="#bio-r2" class="bio-back">voltar ao texto</a></li>
+        <li id="bio-n3">Biomimicry 3.8, <i>Life’s Principles</i>: “Be locally attuned and responsive”. Janine Benyus, <i>Biomimicry: Innovation Inspired by Nature</i>, 1997. <a href="#bio-r3" class="bio-back">voltar ao texto</a></li>
+      </ol>
+    </section>
+
+    <div class="mac-paths" id="caminhos">
+      <h3 class="mac-sub c-grow">Um novo olhar. Ações para o seu negócio.</h3>
+      <p class="t-lede c-grow" style="margin-top:18px">Você pode aplicar esse olhar com acompanhamento na mentoria, viver uma experiência na natureza ou se aproximar de outros empreendedores.</p>
+      <div class="c-paths">
+        <article class="c-path c-path--main c-grow">
+          <h3>Mentoria com Rodrigo Lamin</h3>
+          <p>Traga os desafios da sua empresa. Juntos, escolhemos prioridades, definimos ações e acompanhamos o que acontece. Você aplica no dia a dia e conta comigo para pensar, revisar e avançar.</p>
+          <figure class="c-rhythm" aria-label="Ritmo da mentoria: 12 meses, com 1 encontro individual e 2 encontros em grupo por mês">
+            <svg viewBox="0 0 490 120" aria-hidden="true"><line class="rh-base" x1="4" y1="94" x2="486" y2="94"/><g class="rh-col" style="--i:0"><circle class="rh-solo" cx="24" cy="34" r="7"/><circle class="rh-group" cx="17" cy="70" r="5"/><circle class="rh-group" cx="31" cy="70" r="5"/><text class="rh-month" x="24" y="112" text-anchor="middle">1</text></g><g class="rh-col" style="--i:1"><circle class="rh-solo" cx="66" cy="34" r="7"/><circle class="rh-group" cx="59" cy="70" r="5"/><circle class="rh-group" cx="73" cy="70" r="5"/><text class="rh-month" x="66" y="112" text-anchor="middle">2</text></g><g class="rh-col" style="--i:2"><circle class="rh-solo" cx="108" cy="34" r="7"/><circle class="rh-group" cx="101" cy="70" r="5"/><circle class="rh-group" cx="115" cy="70" r="5"/><text class="rh-month" x="108" y="112" text-anchor="middle">3</text></g><g class="rh-col" style="--i:3"><circle class="rh-solo" cx="150" cy="34" r="7"/><circle class="rh-group" cx="143" cy="70" r="5"/><circle class="rh-group" cx="157" cy="70" r="5"/><text class="rh-month" x="150" y="112" text-anchor="middle">4</text></g><g class="rh-col" style="--i:4"><circle class="rh-solo" cx="192" cy="34" r="7"/><circle class="rh-group" cx="185" cy="70" r="5"/><circle class="rh-group" cx="199" cy="70" r="5"/><text class="rh-month" x="192" y="112" text-anchor="middle">5</text></g><g class="rh-col" style="--i:5"><circle class="rh-solo" cx="234" cy="34" r="7"/><circle class="rh-group" cx="227" cy="70" r="5"/><circle class="rh-group" cx="241" cy="70" r="5"/><text class="rh-month" x="234" y="112" text-anchor="middle">6</text></g><g class="rh-col" style="--i:6"><circle class="rh-solo" cx="276" cy="34" r="7"/><circle class="rh-group" cx="269" cy="70" r="5"/><circle class="rh-group" cx="283" cy="70" r="5"/><text class="rh-month" x="276" y="112" text-anchor="middle">7</text></g><g class="rh-col" style="--i:7"><circle class="rh-solo" cx="318" cy="34" r="7"/><circle class="rh-group" cx="311" cy="70" r="5"/><circle class="rh-group" cx="325" cy="70" r="5"/><text class="rh-month" x="318" y="112" text-anchor="middle">8</text></g><g class="rh-col" style="--i:8"><circle class="rh-solo" cx="360" cy="34" r="7"/><circle class="rh-group" cx="353" cy="70" r="5"/><circle class="rh-group" cx="367" cy="70" r="5"/><text class="rh-month" x="360" y="112" text-anchor="middle">9</text></g><g class="rh-col" style="--i:9"><circle class="rh-solo" cx="402" cy="34" r="7"/><circle class="rh-group" cx="395" cy="70" r="5"/><circle class="rh-group" cx="409" cy="70" r="5"/><text class="rh-month" x="402" y="112" text-anchor="middle">10</text></g><g class="rh-col" style="--i:10"><circle class="rh-solo" cx="444" cy="34" r="7"/><circle class="rh-group" cx="437" cy="70" r="5"/><circle class="rh-group" cx="451" cy="70" r="5"/><text class="rh-month" x="444" y="112" text-anchor="middle">11</text></g><g class="rh-col" style="--i:11"><circle class="rh-solo" cx="486" cy="34" r="7"/><circle class="rh-group" cx="479" cy="70" r="5"/><circle class="rh-group" cx="493" cy="70" r="5"/><text class="rh-month" x="486" y="112" text-anchor="middle">12</text></g></svg>
+          </figure>
+          <ul class="c-rhythm__legend">
+            <li><b>12 meses</b><span>de acompanhamento</span></li>
+            <li class="k-solo"><b>1 individual</b><span><i></i>por mês, diretamente comigo</span></li>
+            <li class="k-group"><b>2 em grupo</b><span><i></i>por mês, em grupos de até 15 pessoas</span></li>
+          </ul>
+          <a data-conversa-open data-avatar="design-system/assets/fotos/rodrigo-lamin-roda.jpg" class="c-link" href="https://wa.me/5548991469196" target="_blank" rel="noopener">Conversar sobre o seu negócio <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 15L15 5M7 5h8v8"/></svg></a>
+        </article>
+        <article class="c-path c-path--alt c-grow" data-theme="noite">
+          <img src="design-system/assets/fotos/mar-de-nuvens.webp" alt="" loading="lazy">
+          <h3>ALTITUDE</h3>
+          <p>Saia da rotina. Pense com mais clareza. Uma experiência na natureza, em Urubici, para olhar para você e seu negócio.</p>
+          <a class="c-link" href="altitude/">Conhecer a experiência <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 15L15 5M7 5h8v8"/></svg></a>
+        </article>
+        <article class="c-path c-path--net c-grow">
+          <svg class="net-fig" viewBox="0 0 300 120" aria-hidden="true">
+            <line class="bi-ground" x1="0" y1="78" x2="300" y2="78"/>
+            <g transform="translate(52 78)" data-mt="71" data-h="64"></g>
+            <g transform="translate(150 78)" data-mt="77" data-h="78"></g>
+            <g transform="translate(248 78)" data-mt="83" data-h="60"></g>
+            <path class="bi-hypha" fill="none" d="M52 80 C72 112 130 112 150 80 M150 80 C170 112 228 112 248 80"/>
+            <path class="bi-flow" fill="none" d="M52 80 C72 112 130 112 150 80"/>
+            <path class="bi-flow back" fill="none" d="M150 80 C170 112 228 112 248 80"/>
+          </svg>
+          <h3>Conexões que continuam</h3>
+          <p>Do Gigante do PDV às Rodas de Liderança, reúno pessoas para compartilhar desafios, aprender com experiências reais e construir parcerias. Uma rede para trocar e seguir aprendendo.</p>
+          <a class="c-link" href="https://chat.whatsapp.com/GYU3rDHtnef7FcLIZSk6EP" target="_blank" rel="noopener">Conhecer a comunidade <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 15L15 5M7 5h8v8"/></svg></a>
+        </article>
+      </div>
+      <p class="mac-cta c-grow"><a data-conversa-open data-avatar="design-system/assets/fotos/rodrigo-lamin-roda.jpg" class="c-btn c-btn--primary" href="https://wa.me/5548991469196?text=Quero%20fazer%20a%20leitura%20da%20%C3%A1rvore%20do%20meu%20neg%C3%B3cio" target="_blank" rel="noopener">Fazer a leitura da árvore do meu negócio
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 15L15 5M7 5h8v8"/></svg></a></p>
+    </div>
+  </div>
+</section>
+
+<section class="altitude" id="altitude" data-theme="noite" aria-labelledby="t-alt">
+  <div class="photo"><img id="alt-img" src="design-system/assets/fotos/mar-de-nuvens.webp" alt="Mar de nuvens ao amanhecer sobre a serra, com araucárias em primeiro plano, em Urubici" loading="lazy"></div>
+  <div class="alt-body">
+    <div class="c-wrap">
+      <p class="alt-mark c-grow"><b>1.300</b><span>metros</span></p>
+      <div class="grid">
+        <div>
+          <h2 id="t-alt" class="t-1 c-grow">Ganhar distância. Enxergar possibilidades.</h2>
+          <p class="sub t-lede c-grow" style="color:var(--ink)">ALTITUDE, a imersão dos cultivadores: quatro dias para sair do ritmo da operação, olhar para quem conduz o negócio e voltar com clareza sobre as próximas escolhas.</p>
+          <p class="meta c-grow">Sítio Mar de Nuvens · Urubici, Serra Catarinense · 30 de outubro a 2 de novembro</p>
+        </div>
+        <div>
+          <ol class="c-route c-grow" aria-label="Programação">
+            <li><i>30/10</i><b>Chegar</b><span>Acolhimento, jantar e primeiras conversas.</span></li>
+            <li><i>31/10</i><b>O Cultivador</b><span>Sua história, escolhas, padrões e liderança.</span></li>
+            <li class="is-peak"><i>01/11</i><b>A Árvore</b><span>A leitura do negócio, das relações e das decisões.</span></li>
+            <li><i>02/11</i><b>Integrar</b><span>Encerramento e um percurso por Urubici.</span></li>
+          </ol>
+          <div class="alt-cta c-grow">
+            <a class="c-btn c-btn--primary" href="https://wa.me/5548991469196" target="_blank" rel="noopener">Quero uma vaga no ALTITUDE</a>
+            <a class="c-link" href="altitude/">Conhecer a experiência</a>
+            <p class="price">Condição inaugural <b>R$ 7.850</b> · para os 7 primeiros, hospedagem e alimentação incluídas</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="forest c-section" id="rede" aria-labelledby="t-rede">
+  <div class="c-wrap">
+    <div class="top">
+      <h2 id="t-rede" class="t-1 c-grow">O crescimento também acontece entre pessoas.</h2>
+      <p class="t-lede c-grow">Numa floresta, as árvores trocam nutrientes pelas raízes, através de uma rede de fungos que ninguém vê. Do Gigante do PDV às Rodas de Liderança, é essa rede que eu cultivo: espaços de encontro, troca e aprendizado.</p>
+    </div>
+    <svg class="forest-svg c-forest" id="forest" viewBox="0 -40 1240 560" role="img" aria-label="Floresta de iniciativas conectadas pelas raízes: Rodas de Liderança, Gigante do PDV, mentoria e ALTITUDE, com Rodrigo Lamin no centro">
+      <defs><g id="arau"><path fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" d="M0 0 C1 -50 -2 -110 1 -168 M0 -96 C-22 -94 -46 -102 -62 -128 M1 -104 C24 -103 48 -112 60 -138 M0 -120 C-18 -118 -38 -128 -48 -150 M1 -126 C17 -125 35 -134 43 -154 M0 -142 C-11 -141 -23 -149 -29 -164 M1 -146 C12 -145 22 -153 27 -166 M-62 -128 l-6 -9 M-62 -128 l3 -11 M60 -138 l6 -9 M60 -138 l-3 -11 M-48 -150 l-5 -8 M-48 -150 l3 -9 M43 -154 l5 -8 M43 -154 l-3 -9 M-29 -164 l-3 -7 M27 -166 l3 -7 M1 -168 l-3 -8 M1 -168 l4 -7 M-34 -104 q-6 -6 -6 -14 M32 -110 q6 -6 6 -14"/></g></defs>
+      <line class="ground" x1="0" y1="250" x2="1240" y2="250" stroke-width="1.5"/>
+      <g transform="translate(130 250) scale(.86)"><g class="sprout" data-sprout="2"></g></g>
+      <g transform="translate(372 250) scale(1.02)"><g class="sprout" data-sprout="1"></g></g>
+      <g transform="translate(620 250) scale(1.3)"><g class="sprout" data-sprout="0"></g></g>
+      <g transform="translate(866 250) scale(.96)"><g class="sprout" data-sprout="1"></g></g>
+      <g transform="translate(1104 250) scale(.8)"><g class="sprout" data-sprout="2"></g></g>
+      <path class="hyph" d="M130 250 C150 330 300 360 372 250"/>
+      <path class="hyph" d="M372 250 C400 360 560 400 620 250"/>
+      <path class="hyph" d="M620 250 C680 400 820 360 866 250"/>
+      <path class="hyph" d="M866 250 C900 330 1060 340 1104 250"/>
+      <path class="hyph" d="M130 250 C200 440 520 470 620 250"/>
+      <path class="hyph" d="M620 250 C740 470 1040 440 1104 250"/>
+      <path class="hyph" d="M372 250 C470 430 780 440 866 250"/>
+      <path class="hyph" d="M240 330 C230 380 250 420 220 470 M500 380 C520 420 500 460 520 500 M760 380 C740 420 760 470 740 505 M1000 330 C1010 380 990 420 1010 470" stroke-opacity=".18"/>
+      <path class="flow" d="M130 250 C200 440 520 470 620 250"/>
+      <path class="flow b" d="M620 250 C740 470 1040 440 1104 250"/>
+      <path class="flow c" d="M372 250 C470 430 780 440 866 250"/>
+      <path class="flow b" d="M372 250 C400 360 560 400 620 250"/>
+      <path class="flow c" d="M620 250 C680 400 820 360 866 250"/>
+      <circle class="node" cx="620" cy="250" r="7"/>
+      <text class="lbl" x="130" data-label="2" y="40" text-anchor="middle">Rodas de Liderança</text>
+      <text class="cap" x="130" data-label="2" y="66" text-anchor="middle">quase 3.000 executivos e líderes</text>
+      <text class="lbl" x="372" data-label="1" y="22" text-anchor="middle">Gigante do PDV</text>
+      <text class="cap" x="372" data-label="1" y="48" text-anchor="middle">profissionais de trade marketing</text>
+      <text class="lbl" data-label="0" x="620" y="-20" text-anchor="middle" style="fill:var(--accent)">Rodrigo Lamin</text>
+      <text class="lbl" x="866" data-label="1" y="30" text-anchor="middle">Mentoria</text>
+      <text class="cap" x="866" data-label="1" y="56" text-anchor="middle">12 meses, grupos de até 15</text>
+      <text class="lbl" x="1104" data-label="2" y="50" text-anchor="middle">ALTITUDE</text>
+      <text class="cap" x="1104" data-label="2" y="76" text-anchor="middle">imersão em Urubici</text>
+    </svg>
+    <ul class="forest-list">
+      <li><b>Rodas de Liderança</b><span>quase 3.000 executivos e líderes</span></li>
+      <li><b>Gigante do PDV</b><span>profissionais de trade marketing</span></li>
+      <li><b>Mentoria</b><span>12 meses, grupos de até 15</span></li>
+      <li><b>ALTITUDE</b><span>imersão em Urubici</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="close" aria-labelledby="t-close">
+  <div class="c-wrap">
+    <div>
+      <h2 id="t-close" class="c-grow">Bons frutos carregam novas sementes.</h2>
+      <p class="t-lede c-grow" style="color:var(--ink-2)">Um negócio pode gerar renda, abrir oportunidades e melhorar a vida de quem está por perto. Quero ajudar você a crescer cuidando dessas relações.</p>
+      <p class="close-sign c-grow">Rodrigo Lamin</p>
+    </div>
+    <svg class="close-arau" id="closeArau" aria-hidden="true"></svg>
+  </div>
+</section>
+
+<section class="faq c-section" id="perguntas" aria-labelledby="t-faq">
+  <div class="c-wrap">
+    <h2 id="t-faq" class="t-2 c-grow">Tire suas dúvidas. <span>Veja se faz sentido para você.</span></h2>
+    <div class="c-faq c-grow">
+        <details><summary>Essa mentoria faz sentido para mim?<svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M14 6v16M6 14h16"/></svg></summary><p>É para empreendedores e líderes que já têm um negócio ou uma equipe para conduzir e querem mais clareza para decidir e crescer. Na primeira conversa, entendemos seu desafio e avaliamos juntos se a mentoria pode ajudar.</p></details>
+        <details><summary>Preciso entender de natureza ou biomimética?<svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M14 6v16M6 14h16"/></svg></summary><p>Não. Eu explico as ideias com exemplos simples e ajudo você a relacioná-las ao seu negócio. O ponto de partida é o que você já vive: clientes, vendas, equipe, tempo e dinheiro.</p></details>
+        <details><summary>Como isso ajuda nas decisões do negócio?<svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M14 6v16M6 14h16"/></svg></summary><p>Uma árvore precisa de uma base forte e de boas condições para crescer. Esse olhar nos ajuda a examinar o negócio: o que sustenta as vendas, onde faltam recursos e quais relações precisam de cuidado. A partir daí, escolhemos ações e acompanhamos os resultados.</p></details>
+        <details><summary>Como funciona a primeira conversa?<svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M14 6v16M6 14h16"/></svg></summary><p>Clique no botão e me conte pelo WhatsApp o que você quer melhorar no seu negócio. Vamos entender seu momento e conversar sobre como posso ajudar. Você decide se quer seguir, sem compromisso de contratação.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final" id="conversa" data-theme="fogo" aria-labelledby="t-cta">
+  <div class="c-wrap">
+    <div>
+      <h2 id="t-cta" class="c-grow">Qual desafio seu negócio precisa resolver?</h2>
+      <p class="t-lede c-grow" style="color:var(--ink-2)">Me conte o que está acontecendo e o que você quer melhorar. Vamos conversar sobre como a mentoria pode ajudar você a escolher o próximo passo.</p>
+      <div class="cta-conversa c-grow" data-conversa data-avatar="design-system/assets/fotos/rodrigo-lamin-roda.jpg"></div>
+      <p class="cta-note c-grow">Diretamente comigo, pelo WhatsApp. Sem compromisso de contratação.</p>
+    </div>
+    <div class="c-seedrain" id="seedrain" aria-hidden="true"></div>
+  </div>
+</section>
+</main>
+
+<footer><div class="c-wrap" style="border-top:1px solid var(--line)"><span><b>Rodrigo Lamin</b> · Aprender com a natureza. Fazer negócios crescerem.</span><span>Método Árvore do Cultivo · © 2026 Rodrigo Lamin</span></div></footer>
+
+<script src="design-system/biomimetics.js?v=20261016b"></script>
+<script src="design-system/conversa.js?v=20261016b"></script>
+<script>
+(function(){
+  Cultivo.nav(document.getElementById('nav'));
+  Cultivo.grow();
+  var hero = document.getElementById('topo'), pin = document.getElementById('heroPin');
+  function pinned(){ return getComputedStyle(hero).position === 'sticky'; }
+  // com pin: 0→1 ao longo do trecho fixado (altura do container menos uma tela); sem pin: enquanto o hero sai da tela
+  function heroProgress(){
+    if (pinned()){ var r = pin.getBoundingClientRect(); return -r.top / Math.max(1, r.height - innerHeight); }
+    var h = hero.getBoundingClientRect(); return -h.top / Math.max(1, h.height*.85);
+  }
+  // durante o pin só as raízes crescem; no último terço o título sobe e esmaece de leve; a barra lateral mostra o progresso
+  var bar = document.getElementById('pinBar'), barWrap = bar.parentNode, h1 = hero.querySelector('h1'), hint = document.getElementById('heroHint'), tk = false;
+  // sementes aladas: soltam-se na fase final e pousam no topo da Trajetória
+  var avoidRel = [];
+  function measureAvoid(){
+    var hb = hero.getBoundingClientRect(), pr = hero.querySelector('.c-portrait').getBoundingClientRect();
+    avoidRel = [{x:pr.left - 16, y:pr.top - hb.top - 20, w:pr.width + 32, h:pr.height*.66 + 20}];   // rosto e cabeça
+    hero.querySelectorAll('.hero-copy h1, .hero-copy .t-lede, .hero-copy .hint').forEach(function(e){
+      var rg = document.createRange(); rg.selectNodeContents(e);
+      [].forEach.call(rg.getClientRects(), function(b){ avoidRel.push({x:b.left - 18, y:b.top - hb.top - 16, w:b.width + 36, h:b.height + 32}); });
+    });
+    hero.querySelectorAll('.hero-copy .c-btn').forEach(function(e){ var b = e.getBoundingClientRect(); avoidRel.push({x:b.left - 18, y:b.top - hb.top - 18, w:b.width + 36, h:b.height + 36}); });
+  }
+  measureAvoid(); addEventListener('resize', measureAvoid);
+  // as linhas do título só têm a largura final depois que as fontes carregam: refaz máscara e áreas protegidas
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ tree.rebuild(); measureAvoid(); });
+  var seeds = Cultivo.seedfall({hero: hero, next: document.getElementById('ponto-de-partida'), avoid: function(){ var t = hero.getBoundingClientRect().top; return avoidRel.map(function(r){ return {x:r.x, y:r.y + t, w:r.w, h:r.h}; }); }});
+  var released = false;
+  var phases = [[0,'Cultivador'],[.2,'Raízes e solo'],[.45,'Tronco e copa'],[.7,'Frutos'],[.9,'Sementes']];
+  var shown = .06, goal = .06, loop = null;
+  function treeLoop(){ shown += (goal - shown)*.14; if (Math.abs(goal - shown) < .0006) shown = goal; tree.set(shown); loop = shown === goal ? null : requestAnimationFrame(treeLoop); }
+  function pinUI(){
+    tk = false;
+    var k = Math.min(1, Math.max(0, heroProgress()));
+    goal = .06 + .94*k; if (!loop) loop = requestAnimationFrame(treeLoop);
+    if (goal >= .9 && !released){ released = true; seeds.release(tree.fruits(), hero); }
+    else if (goal < .82 && released){ released = false; seeds.reset(); }
+    bar.style.height = (k*100).toFixed(1) + '%'; barWrap.style.setProperty('--tip', (k*100).toFixed(1) + '%');
+    barWrap.classList.toggle('is-done', k >= .999);
+    if (hint) hint.style.opacity = k > .9 ? 0 : '';
+  }
+  if (!Cultivo.reduce){ addEventListener('scroll', function(){ if (!tk){ tk = true; requestAnimationFrame(pinUI); } }, {passive:true}); addEventListener('resize', pinUI); pinUI(); }
+  var tree = Cultivo.heroTree(document.getElementById('heroTree'), {
+    seed: 21,
+    simple: function(W){ return W < 900; },
+    portrait: function(box){ var r = hero.querySelector('.c-portrait').getBoundingClientRect(); return {left:r.left - box.left, right:r.right - box.left, top:r.top - box.top, width:r.width, height:r.height}; },
+    // atrás do texto e dos botões a árvore fica a 20%
+    // atrás do texto e dos botões a árvore fica a 20%: um retângulo por linha de texto (o vazio ao lado das linhas fica livre)
+    dim: function(box){
+      var out = [];
+      hero.querySelectorAll('.hero-copy h1, .hero-copy .t-lede, .hero-copy .hint').forEach(function(e){
+        if (getComputedStyle(e).display === 'none') return;
+        var rg = document.createRange(); rg.selectNodeContents(e);
+        [].forEach.call(rg.getClientRects(), function(b){ if (b.width > 2) out.push({x:b.left - box.left - 30, y:b.top - box.top - 12, w:b.width + 60, h:b.height + 24, keep:.2}); });
+      });
+      hero.querySelectorAll('.hero-copy .actions .c-btn').forEach(function(e){ var b = e.getBoundingClientRect(); out.push({x:b.left - box.left - 28, y:b.top - box.top - 22, w:b.width + 56, h:b.height + 44, keep:.2}); });
+      return out;
+    }
+  });
+
+  var rings = Cultivo.rings(document.getElementById('trunk'), document.getElementById('years'), document.getElementById('ro'), [
+    {y:'2008', w:16, t:'A Involves começa no meu quarto, sem investimento externo.', ro:['2008','o primeiro anel']},
+    {y:'2009–13', w:22, n:5, t:'Construção: produto, vendas, grandes contas e cultura.', ro:['5 anos','de raiz']},
+    {y:'2014', w:12, t:'Faturamento anual.', v:'R$ 2,4 mi', rev:1, ro:['R$ 2,4 mi','faturamento 2014']},
+    {y:'2015', w:19.5, t:'Faturamento anual.', v:'R$ 5,4 mi', rev:1, ro:['R$ 5,4 mi','faturamento 2015']},
+    {y:'2016', w:34.5, t:'GPTW: 1º lugar no Brasil em Tecnologia, pequenas empresas.', v:'R$ 11,4 mi', rev:1, ro:['R$ 11,4 mi','faturamento 2016']},
+    {y:'2017', w:51, t:'Receita construída com capital próprio.', v:'R$ 18 mi', rev:1, ro:['R$ 18 mi','faturamento 2017']},
+    {y:'2018', w:9, t:'Transição de gestão: 17 países e cerca de 40 mil pessoas em campo.', v:'17 países', ro:['17 países','na transição']},
+    {y:'2019–24', w:22, n:6, t:'Um novo olhar: desenvolvimento pessoal e a Busca da Visão.', ro:['Escuta','um ciclo para dentro']},
+    {y:'2025', w:11, t:'Gigante do PDV: comunidade para profissionais de trade.', ro:['Gigante','do PDV']},
+    {y:'2026', w:13, t:'Árvore do Cultivo, mentoria e ALTITUDE.', ro:['Hoje','Árvore do Cultivo']}
+  ], ['7,5×','receita entre 2014 e 2017']);
+  // capítulos da trajetória: cada um acende o seu anel
+  var beats = document.querySelectorAll('.beat');
+  var beatObs = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if (!e.isIntersecting) return; beats.forEach(function(b){ b.classList.toggle('is-on', b === e.target); }); rings.locked = true; rings.select(+e.target.dataset.ring); });
+  }, {rootMargin:'-45% 0px -45% 0px'});
+  beats.forEach(function(b){ beatObs.observe(b); });
+  document.querySelector('.story-years').addEventListener('mouseenter', function(){ rings.locked = false; });
+  // passagem: no fim da trajetória os anéis se recolhem numa semente; a semente abre o método
+  var story = document.querySelector('.story'), tw = document.getElementById('trunkWrap'), rseed = tw.querySelector('.ring-seed');
+  function morph(){
+    var r = story.getBoundingClientRect(), k = Math.min(1, Math.max(0, (innerHeight*.9 - r.bottom)/(innerHeight*.5)));
+    tw.style.transform = k ? 'scale(' + (1 - .9*k).toFixed(3) + ')' : '';
+    rseed.style.opacity = Math.max(0, (k - .5)*2).toFixed(2);
+  }
+  if (!Cultivo.reduce){ addEventListener('scroll', function(){ requestAnimationFrame(morph); }, {passive:true}); morph(); }
+  var ms = document.getElementById('macSeed');
+  new IntersectionObserver(function(es, o){ if (es[0].isIntersecting){ ms.classList.add('is-in'); o.disconnect(); } }, {threshold:.6}).observe(ms);
+  Cultivo.mac(document.getElementById('mac'));
+  // barra de etapas: segue a etapa em leitura
+  var stepLinks = [].slice.call(document.querySelectorAll('.c-steps a'));
+  var moveEls = [].slice.call(document.querySelectorAll('#mac .c-mac__move'));
+  function syncSteps(){ var on = moveEls.findIndex(function(m){ return m.classList.contains('is-on'); }); stepLinks.forEach(function(l, i){ if (i === on) l.setAttribute('aria-current','step'); else l.removeAttribute('aria-current'); }); }
+  var mo = new MutationObserver(syncSteps); moveEls.forEach(function(m){ mo.observe(m, {attributes:true, attributeFilter:['class']}); }); syncSteps();
+  // árvores pequenas das dores e dos caminhos: o mesmo desenho do site
+  document.querySelectorAll('[data-mt]').forEach(function(g){ Cultivo.miniTree(g, +g.dataset.mt, {height:+g.dataset.h, base:5}); });
+  Cultivo.inview(document.querySelectorAll('.c-tension__fig, .c-rhythm'));
+  Cultivo.seedrain(document.getElementById('seedrain'), {count: innerWidth < 900 ? 9 : 16, sprouts: innerWidth < 900 ? 4 : 6, seed: 13});
+  Cultivo.strata(document.getElementById('strata'));
+  Cultivo.bio(document.querySelector('.bio'));
+  var ca = document.getElementById('closeArau'); Cultivo.araucaria(ca, {seed:5, duration:2600}); ca.setAttribute('viewBox','0 40 400 430');
+  document.querySelectorAll('#forest .sprout').forEach(function(g, i){ Cultivo.miniTree(g, 31 + i*7, {accent: g.dataset.sprout === '0', height: g.dataset.sprout === '0' ? 150 : 130}); });
+  Cultivo.forest(document.getElementById('forest'));
+  Cultivo.trail();
+  Cultivo.cycle(document.getElementById('cycle'));
+  if (!Cultivo.reduce){
+    var img = document.getElementById('alt-img'), sec = document.getElementById('altitude');
+    addEventListener('scroll', function(){
+      var r = sec.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > innerHeight) return;
+      var p = Math.min(1, Math.max(0, 1 - (r.top + r.height*.4)/innerHeight));
+      img.style.transform = 'scale(' + (1.08 - p*.08).toFixed(4) + ') translateY(' + (p*-2).toFixed(2) + '%)';
+    }, {passive:true});
+  }
+})();
+</script>
+</body>
+</html>

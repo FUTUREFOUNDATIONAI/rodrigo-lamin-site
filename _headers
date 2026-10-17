@@ -1,0 +1,6 @@
+/design-system/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+/design-system/*.css
+  Cache-Control: public, max-age=86400
+/design-system/*.js
+  Cache-Control: public, max-age=86400

@@ -1,0 +1,77 @@
+/* Cultivo.conversa — primeira conversa em formato de chat.
+   Depende de tokens.css. Uso: <div data-conversa></div> (inline) ou <button data-conversa-open> (modal). */
+
+.cv{--cv-max:560px;font-family:var(--font-text);color:var(--ink);max-width:var(--cv-max);width:100%;margin-inline:auto;
+  background:var(--ground-2);border:1px solid var(--line);border-radius:var(--r-l);display:flex;flex-direction:column;
+  min-height:420px;max-height:min(640px,80vh);overflow:hidden;box-shadow:var(--shadow-1)}
+.cv-head{display:flex;align-items:center;gap:var(--s-3);padding:var(--s-4) var(--s-5);border-bottom:1px solid var(--line)}
+.cv-avatar{width:40px;height:40px;border-radius:50%;object-fit:cover;flex:none;background:var(--ground-3)}
+.cv-who{display:flex;flex-direction:column;line-height:1.25;min-width:0}
+.cv-who b{font-family:var(--font-display);font-weight:600;font-size:var(--fs-body)}
+.cv-who span{font-size:var(--fs-small);color:var(--ink-3)}
+.cv-close{margin-left:auto;background:none;border:1px solid var(--line);color:var(--ink-2);border-radius:var(--r-pill);
+  width:36px;height:36px;font-size:18px;cursor:pointer;flex:none}
+.cv-close:hover{border-color:var(--accent);color:var(--ink)}
+
+.cv-log{flex:1;overflow-y:auto;padding:var(--s-5);display:flex;flex-direction:column;gap:var(--s-3);scroll-behavior:smooth}
+.cv-msg{max-width:86%;padding:var(--s-3) var(--s-4);border-radius:18px;font-size:var(--fs-body);line-height:1.5;
+  animation:cv-in var(--dur-2) var(--ease-out) both}
+.cv-msg.bot{align-self:flex-start;background:var(--ground-3);border-bottom-left-radius:6px}
+.cv-msg.me{align-self:flex-end;background:var(--accent);color:var(--on-accent);border-bottom-right-radius:6px}
+.cv-msg strong{font-weight:500;color:var(--accent-text)}
+.cv-msg.me strong{color:inherit}
+.cv-typing{align-self:flex-start;display:flex;gap:5px;padding:var(--s-3) var(--s-4);background:var(--ground-3);border-radius:18px}
+.cv-typing i{width:6px;height:6px;border-radius:50%;background:var(--ink-3);animation:cv-dot 1s infinite ease-in-out}
+.cv-typing i:nth-child(2){animation-delay:.15s}.cv-typing i:nth-child(3){animation-delay:.3s}
+
+/* semente que brota a cada resposta */
+.cv-seed{align-self:flex-end;width:22px;height:22px;margin-top:-6px}
+.cv-seed path{fill:none;stroke:var(--c-musgo-400);stroke-width:1.6;stroke-linecap:round;
+  stroke-dasharray:30;stroke-dashoffset:30;animation:cv-grow .9s var(--ease-grow, ease-out) forwards}
+.cv-seed circle{fill:var(--accent);transform-origin:11px 19px;animation:cv-pop .35s var(--ease-out) both}
+
+.cv-input{border-top:1px solid var(--line);padding:var(--s-4) var(--s-5);display:flex;flex-wrap:wrap;gap:var(--s-2)}
+.cv-opt{font:inherit;font-family:var(--font-display);font-size:var(--fs-small);font-weight:500;color:var(--ink);
+  background:transparent;border:1px solid var(--line-strong, var(--line));border-radius:var(--r-pill);padding:10px 16px;cursor:pointer;
+  transition:border-color var(--dur-1) var(--ease-out),background var(--dur-1) var(--ease-out)}
+.cv-opt:hover{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,transparent)}
+.cv-opt:focus-visible,.cv-text:focus-visible,.cv-send:focus-visible,.cv-close:focus-visible,.cv-wa:focus-visible{outline:2px solid var(--focus,var(--accent));outline-offset:2px}
+.cv-form{display:flex;flex-direction:column;gap:var(--s-2);width:100%}
+.cv-form label{font-size:var(--fs-small);color:var(--ink-2)}
+.cv-row{display:flex;gap:var(--s-2);width:100%}
+.cv-text{flex:1;min-width:0;font:inherit;font-size:var(--fs-body);color:var(--ink);background:var(--ground);border:1px solid var(--line);
+  border-radius:var(--r-m);padding:12px 14px}
+.cv-send{font:inherit;font-family:var(--font-display);font-weight:600;background:var(--accent);color:var(--on-accent);border:0;
+  border-radius:var(--r-pill);padding:12px 20px;cursor:pointer;flex:none}
+.cv-send:disabled{opacity:.45;cursor:default}
+.cv-wa{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:600;background:var(--accent);
+  color:var(--on-accent);text-decoration:none;border-radius:var(--r-pill);padding:14px 22px}
+.cv-restart{font:inherit;font-size:var(--fs-small);background:none;border:0;color:var(--ink-2);text-decoration:underline;cursor:pointer;padding:10px 6px}
+.cv-foot{display:flex;justify-content:space-between;gap:var(--s-3);padding:var(--s-2) var(--s-5) var(--s-3);font-size:12px;color:var(--ink-3)}
+.cv-foot a{color:inherit}
+.cv-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* modal */
+.cv-modal{position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:var(--s-4);
+  background:color-mix(in srgb,var(--c-humus-950) 72%,transparent);backdrop-filter:blur(4px)}
+.cv-modal[hidden]{display:none}
+.cv-modal .cv{max-height:min(680px,92vh)}
+
+@keyframes cv-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes cv-dot{0%,80%,100%{opacity:.3;transform:translateY(0)}40%{opacity:1;transform:translateY(-3px)}}
+@keyframes cv-grow{to{stroke-dashoffset:0}}
+@keyframes cv-pop{from{transform:scale(0)}to{transform:scale(1)}}
+
+@media (max-width:480px){
+  .cv{border-radius:var(--r-m);min-height:380px}
+  .cv-log{padding:var(--s-4)}
+  .cv-input{padding:var(--s-3) var(--s-4)}
+  .cv-row{flex-direction:column}
+  .cv-modal{padding:0;align-items:end}
+  .cv-modal .cv{max-height:94vh;border-radius:var(--r-l) var(--r-l) 0 0}
+}
+@media (prefers-reduced-motion:reduce){
+  .cv-msg,.cv-seed path,.cv-seed circle,.cv-typing i{animation:none}
+  .cv-seed path{stroke-dashoffset:0}
+  .cv-log{scroll-behavior:auto}
+}

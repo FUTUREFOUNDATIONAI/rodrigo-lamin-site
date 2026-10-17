@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="noite">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ALTITUDE — Imersão dos Cultivadores · Rodrigo Lamin</title>
+<meta name="description" content="ALTITUDE, a imersão dos cultivadores: quatro dias na Serra Catarinense para olhar para si, para o seu negócio e para as decisões do próximo ciclo. Conduzida por Rodrigo Lamin.">
+<link rel="canonical" href="https://rodrigolamin.com.br/altitude/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Rodrigo Lamin">
+<meta property="og:title" content="ALTITUDE — Imersão dos Cultivadores · Rodrigo Lamin">
+<meta property="og:description" content="ALTITUDE, a imersão dos cultivadores: quatro dias na Serra Catarinense para olhar para si, para o seu negócio e para as decisões do próximo ciclo. Conduzida por Rodrigo Lamin.">
+<meta property="og:url" content="https://rodrigolamin.com.br/altitude/">
+<meta property="og:image" content="https://rodrigolamin.com.br/design-system/assets/fotos/og-altitude.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="../design-system/assets/marca/araucaria-mark.svg">
+<link rel="stylesheet" href="../design-system/tokens.css?v=20261016b">
+<link rel="stylesheet" href="../design-system/components.css?v=20261016b">
+<style>
+/* ALTITUDE · página da imersão. Tema noite (céu da serra) com um fechamento em fogo.
+   A página é uma subida: o altímetro lateral vai de 0 a 1.300 m conforme o scroll; a névoa do hero se dissipa ao subir. */
+html{scrollbar-color:var(--c-noite-700) var(--ground)}
+::-webkit-scrollbar-track{background:var(--ground)}::-webkit-scrollbar-thumb{background:var(--c-noite-700);border-color:var(--ground)}
+.c-nav__in .back{font-family:var(--font-display);font-size:15px;color:var(--ink-2);text-decoration:none;display:inline-flex;gap:8px;align-items:center}
+.c-nav__in .back:hover{color:var(--ink)}
+.c-nav__in .back svg{width:16px;height:16px}
+
+/* ---------- altímetro ---------- */
+.alti{position:fixed;right:max(18px, env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);z-index:20;display:flex;flex-direction:column;align-items:flex-end;gap:8px;font-family:var(--font-display);pointer-events:none}
+.alti b{font-size:17px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums;color:var(--ink)}
+.alti .scale{width:2px;height:200px;background:var(--line-strong);border-radius:2px;position:relative}
+.alti .scale i{position:absolute;left:-4px;bottom:0;width:10px;height:10px;border-radius:50%;background:var(--accent);transform:translateY(50%)}
+.alti span{font-size:13px;color:var(--ink-3)}
+@media (max-width:1180px){.alti{display:none}}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;isolation:isolate}
+.hero .photo{position:absolute;inset:0;z-index:-3}
+.hero .photo img{width:100%;height:100%;object-fit:cover;object-position:50% 58%}
+.hero::before{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(180deg,rgba(29,30,43,.62) 0%,rgba(29,30,43,.1) 22%,rgba(29,30,43,.3) 38%,rgba(29,30,43,.88) 58%,rgba(29,30,43,.94) 80%,var(--ground) 100%),linear-gradient(90deg,rgba(29,30,43,.55) 0%,rgba(29,30,43,0) 62%)}
+.mist{position:absolute;inset:auto -10% 8% -10%;height:70%;z-index:-1;pointer-events:none;-webkit-mask-image:linear-gradient(90deg,transparent 30%,#000 66%);mask-image:linear-gradient(90deg,transparent 30%,#000 66%)}
+/* sombra macia só atrás do texto: legibilidade AA sobre a névoa e o céu claro */
+.hero .copy{position:relative}
+.hero .copy::before{content:"";position:absolute;inset:-12% -18% -10% -14%;z-index:-1;background:radial-gradient(ellipse 70% 62% at 36% 56%,rgba(22,23,33,.82),rgba(22,23,33,.55) 55%,rgba(22,23,33,0) 100%);pointer-events:none}
+.mist svg{position:absolute;width:120%;left:-10%;height:auto;filter:blur(14px)}
+.mist svg path{fill:none;stroke:#f4f1eb;stroke-linecap:round}
+.mist .m1{bottom:8%;opacity:.42}.mist .m2{bottom:26%;opacity:.3}.mist .m3{bottom:44%;opacity:.2}
+.hero .c-wrap{width:100%;padding-top:120px;padding-bottom:clamp(40px,8vh,96px)}
+.hero h1{font-size:min(var(--fs-hero),12svh);max-width:12ch;color:#fff8ec}
+.hero h1 span{color:var(--accent)}
+.hero .t-lede{margin-top:clamp(18px,3vh,30px);color:#ebe6dc;max-width:32em}
+.hero .actions{margin-top:clamp(22px,4vh,36px);display:flex;flex-wrap:wrap;gap:var(--s-3)}
+.hero .facts{margin:clamp(26px,5vh,48px) 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:10px 34px;font-family:var(--font-display);font-size:16px;color:#ebe6dc}
+.hero .facts li{display:flex;align-items:center;gap:10px}
+.hero .facts li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+.hero .c-btn--ghost{color:#fff8ec;border-color:rgba(255,248,236,.45)}
+@media (max-height:700px) and (min-width:901px){.hero h1{font-size:min(var(--fs-hero),10svh)}.hero .t-lede{font-size:17px}.hero .facts{margin-top:18px}}
+
+/* ---------- blocos ---------- */
+.sec{padding-block:clamp(88px,11vw,150px);position:relative}
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(36px,6vw,104px);align-items:start}
+.split > * + *{margin-top:0}
+h2.t-1 span,h2.t-2 span{color:var(--accent)}
+.stack > * + *{margin-top:var(--s-5)}
+.ask{margin:clamp(36px,5vw,64px) 0 0;font-family:var(--font-text);font-style:italic;font-size:clamp(24px,2.6vw,38px);line-height:1.3;max-width:24em;text-wrap:balance}
+.ask::before{content:"“";color:var(--accent)}.ask::after{content:"”";color:var(--accent)}
+.who{margin-top:var(--s-6);padding-top:var(--s-5);border-top:1px solid var(--line);color:var(--ink-2);max-width:var(--measure)}
+
+/* ---------- interlúdio: o amanhecer acima das nuvens, sem texto sobre a foto ---------- */
+.interlude{margin:0;position:relative;height:clamp(320px,62vw,760px);overflow:hidden}
+.interlude img{width:100%;height:100%;object-fit:cover;object-position:50% 45%}
+.interlude figcaption{position:absolute;left:var(--gutter);bottom:20px;font-family:var(--font-display);font-size:var(--fs-label);color:#fff8ec;background:rgba(29,30,43,.72);padding:6px 12px;border-radius:var(--r-pill)}
+
+/* ---------- Cultivador → Árvore ---------- */
+.mac{background:var(--ground-2)}
+.mac-fig{margin-top:clamp(40px,6vw,72px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,80px)}
+.mac-fig figure{margin:0}
+.mac-fig svg{display:block;width:100%;height:auto;overflow:visible}
+.mac-fig .ground{stroke:var(--ink-3);stroke-opacity:.5}
+.mac-fig .hy{fill:none;stroke:var(--ink);stroke-opacity:.3;stroke-width:1.2}
+.mac-fig .fl{fill:none;stroke:var(--accent);stroke-width:2.2;stroke-linecap:round;stroke-dasharray:3 40;animation:flow 4s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-215}}
+.mac-fig .day{font-family:var(--font-display);font-size:var(--fs-label);color:var(--accent-text);display:block;margin:var(--s-4) 0 6px}
+.mac-fig h3{font-size:var(--fs-3)}
+.mac-fig p{margin-top:var(--s-3);color:var(--ink-2);max-width:30em}
+.mt-person path{stroke:var(--ink)}
+/* trilha dos gestos */
+.trail-wrap{margin-top:clamp(56px,8vw,104px)}
+.trail-wrap h3{font-size:var(--fs-3);max-width:20em}
+.trail{position:relative;margin-top:var(--s-6)}
+.trail svg.path{display:block;width:100%;height:auto;overflow:visible}
+.trail .dash{fill:none;stroke:var(--ink-2);stroke-width:1.6;stroke-dasharray:5 7;stroke-linecap:round;opacity:.65}
+.trail .walk{fill:none;stroke:var(--accent);stroke-width:2.4;stroke-linecap:round}
+.trail .walker{fill:var(--accent)}
+.trail ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s-5);margin-top:var(--s-4)}
+.trail li{display:flex;flex-direction:column;gap:8px}
+.trail .ic{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:var(--ground-3);border:1px solid var(--line);color:var(--accent-text);transition:background var(--dur-2),color var(--dur-2),transform var(--dur-2) var(--ease-grow)}
+.trail .ic svg{width:58%;height:58%}
+.trail li.is-on .ic{background:var(--accent);color:var(--on-accent);transform:scale(1.08)}
+.trail b{font-family:var(--font-display);font-size:21px;letter-spacing:-.02em}
+.trail span{font-size:var(--fs-small);color:var(--ink-2);line-height:1.45}
+
+/* ---------- lugar ---------- */
+.place .head{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(32px,6vw,96px);align-items:end}
+.strip{margin-top:clamp(40px,6vw,72px);display:grid;grid-auto-flow:column;grid-auto-columns:clamp(240px,30vw,420px);gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:14px;scrollbar-width:thin;outline-offset:6px}
+.strip figure{margin:0;scroll-snap-align:start}
+.strip img{display:block;width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:var(--r-m);background:var(--ground-2)}
+.strip figure.wide{grid-column:span 2}
+.strip figure.wide img{aspect-ratio:3/2}
+.strip figcaption{margin-top:10px;font-family:var(--font-display);font-size:var(--fs-label);color:var(--ink-2)}
+.strip-nav{display:flex;gap:10px;margin-top:var(--s-4)}
+.strip-nav button{font:inherit;width:46px;height:46px;border-radius:50%;border:1px solid var(--line-strong);background:transparent;color:var(--ink);cursor:pointer;display:grid;place-items:center}
+.strip-nav button:hover{background:color-mix(in srgb,var(--ink) 8%,transparent)}
+.strip-nav svg{width:18px;height:18px}
+.notes{margin-top:clamp(36px,5vw,56px);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,4vw,64px)}
+.notes p{border-top:1px solid var(--line-strong);padding-top:var(--s-4);color:var(--ink-2)}
+.notes strong{display:block;font-family:var(--font-display);font-size:var(--fs-4);color:var(--ink);letter-spacing:-.02em;margin-bottom:6px;font-weight:600}
+
+/* ---------- o que merece crescer ---------- */
+.grow4 svg{display:block;width:100%;height:auto;margin-top:clamp(36px,5vw,64px);overflow:visible}
+.grow4 .ground{stroke:var(--ink-3);stroke-opacity:.5}
+.grow4 ol{list-style:none;margin:var(--s-4) 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s-5)}
+.grow4 ol b{display:block;font-family:var(--font-display);font-size:var(--fs-4);letter-spacing:-.02em}
+.grow4 ol span{display:block;margin-top:6px;color:var(--ink-2);font-size:var(--fs-small);line-height:1.5}
+
+/* ---------- programação: perfil da serra ---------- */
+.prog{background:var(--ground-2);overflow:hidden}
+.ridge{margin-top:clamp(40px,6vw,72px);position:relative}
+.ridge svg{display:block;width:100%;height:auto;overflow:visible}
+.ridge .fill{fill:color-mix(in srgb,var(--ink) 5%,transparent)}
+.ridge .line{fill:none;stroke:var(--ink-3);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.ridge .lit{fill:none;stroke:var(--accent);stroke-width:3;stroke-linejoin:round;stroke-linecap:round}
+.ridge .st{fill:var(--ground-2);stroke:var(--accent);stroke-width:2.5;transition:fill var(--dur-2)}
+.ridge .st.is-on{fill:var(--accent)}
+.ridge .peak-lbl{font-family:var(--font-display);font-weight:700;font-size:22px;fill:var(--ink)}
+.ridge .peak-cap{font-family:var(--font-display);font-size:15px;fill:var(--ink-2)}
+.days{list-style:none;margin:var(--s-5) 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s-5)}
+.days i{display:block;font-style:normal;font-family:var(--font-display);font-size:var(--fs-label);color:var(--accent-text)}
+.days b{display:block;font-family:var(--font-display);font-size:var(--fs-3);letter-spacing:-.03em;margin-top:6px;line-height:1.1}
+.days p{margin-top:var(--s-3);color:var(--ink-2);font-size:var(--fs-small);line-height:1.55}
+.days em{display:block;margin-top:var(--s-3);font-style:normal;font-family:var(--font-display);font-size:13px;letter-spacing:.02em;color:var(--ink-3)}
+.surprise{margin-top:clamp(36px,5vw,56px);max-width:36em;font-style:italic;color:var(--ink-2)}
+
+/* ---------- quem conduz ---------- */
+.lead .grid{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);gap:clamp(36px,6vw,104px);align-items:center}
+.lead .arch{border-radius:var(--r-copa);overflow:hidden;aspect-ratio:.8;max-width:440px;background:var(--ground-2)}
+.lead .arch img{width:100%;height:100%;object-fit:cover;object-position:50% 22%;filter:grayscale(.6) sepia(.25) contrast(1.05)}
+.lead h2 span{color:var(--accent)}
+.lead p{color:var(--ink-2);max-width:var(--measure)}
+
+/* ---------- investimento ---------- */
+.price .grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(36px,6vw,104px);align-items:start}
+.incl{list-style:none;margin:var(--s-6) 0 0;padding:0;display:grid;gap:12px}
+.incl li{display:flex;gap:14px;align-items:baseline;font-family:var(--font-display);font-size:19px}
+.incl li svg{width:18px;height:18px;flex:none;color:var(--accent);transform:translateY(3px)}
+.incl small{display:block;font-family:var(--font-text);font-size:var(--fs-small);color:var(--ink-2);margin-top:2px}
+.ticket{background:var(--ground-2);border:1px solid var(--line);border-radius:var(--r-l);padding:clamp(28px,4vw,48px);box-shadow:var(--shadow-2)}
+.ticket .cond{font-family:var(--font-display);font-size:var(--fs-4);font-weight:600}
+.ticket .big{font-family:var(--font-display);font-weight:700;font-size:clamp(56px,7vw,104px);letter-spacing:-.05em;line-height:.9;margin-top:var(--s-3);font-variant-numeric:tabular-nums}
+.ticket .for{margin-top:var(--s-3);color:var(--ink-2)}
+.ticket .rest{margin-top:var(--s-5);padding-top:var(--s-4);border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;font-family:var(--font-display);font-size:18px}
+.ticket .rest b{font-variant-numeric:tabular-nums}
+.ticket .go{margin-top:var(--s-6);display:flex;flex-wrap:wrap;gap:var(--s-3)}
+.ticket .fine{margin-top:var(--s-4);font-size:var(--fs-small);color:var(--ink-3)}
+
+/* ---------- FAQ ---------- */
+.faq .grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(36px,6vw,104px);align-items:start}
+.faq details{border-top:1px solid var(--line-strong)}
+.faq details:last-child{border-bottom:1px solid var(--line-strong)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 0;font-family:var(--font-display);font-size:var(--fs-4);font-weight:600;letter-spacing:-.02em}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary svg{width:20px;height:20px;flex:none;color:var(--accent-text);transition:transform var(--dur-2) var(--ease-grow)}
+.faq details[open] summary svg{transform:rotate(45deg)}
+.faq details p{padding:0 0 24px;color:var(--ink-2);max-width:var(--measure)}
+.more{margin-top:clamp(56px,8vw,96px);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,4vw,64px)}
+.more div{border-top:1px solid var(--line-strong);padding-top:var(--s-5)}
+.more h3{font-size:var(--fs-3)}
+.more p{margin-top:var(--s-3);color:var(--ink-2)}
+.more .c-link{margin-top:var(--s-4)}
+
+/* ---------- fechamento ---------- */
+.close{position:relative;overflow:hidden}
+.close .c-wrap{padding-block:clamp(88px,10vw,140px);display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:clamp(32px,6vw,96px);align-items:end}
+.close h2{font-size:clamp(48px,7vw,116px);letter-spacing:-.05em}
+.close p{margin-top:24px;color:var(--ink-2)}
+.close .actions{margin-top:32px;display:flex;flex-wrap:wrap;gap:12px}
+.close svg.tree{width:100%;max-width:300px;height:auto;justify-self:end;overflow:visible}
+.close .mt path{stroke:var(--c-fogo-tinta)}
+.close .mt .mt-fruit{fill:#fff3e0;stroke:var(--c-fogo-tinta);stroke-width:1.2}
+.close .mt .mt-leaf{fill:var(--c-musgo-600)}
+.seeds{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.seeds i{position:absolute;top:-20px;width:14px;height:6px;opacity:0}
+.seeds i::before{content:"";position:absolute;left:0;top:1px;width:5px;height:4px;border-radius:50%;background:var(--c-fogo-tinta)}
+.seeds i::after{content:"";position:absolute;left:4px;top:0;width:11px;height:5px;border-radius:50%;background:rgba(29,18,8,.32)}
+.close.is-in .seeds i{animation:fall var(--d) var(--ease-sap) var(--w) infinite}
+@keyframes fall{0%{opacity:0;transform:translate(0,0) rotate(0)}10%{opacity:.9}100%{opacity:0;transform:translate(var(--x),var(--y)) rotate(var(--r))}}
+footer .c-wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 24px;padding-block:26px;font-family:var(--font-display);font-size:var(--fs-label);color:var(--ink-3)}
+footer a{color:var(--ink-2)}
+
+@media (max-width:1000px){
+  .split,.place .head,.lead .grid,.price .grid,.faq .grid,.close .c-wrap{grid-template-columns:minmax(0,1fr)}
+  .lead .arch{max-width:320px}
+  .close svg.tree{justify-self:start;max-width:180px}
+}
+@media (max-width:760px){
+  .hero .photo img{object-position:30% 50%}
+  .hero::before{background:linear-gradient(180deg,rgba(29,30,43,.7) 0%,rgba(29,30,43,.6) 30%,rgba(29,30,43,.82) 55%,rgba(29,30,43,.94) 80%,var(--ground) 100%)}
+  .hero .copy::before{inset:-8% -12% -6% -12%}
+  .ticket .c-btn{font-size:16px;padding:14px 20px}
+  .mac-fig,.notes,.more{grid-template-columns:minmax(0,1fr)}
+  .trail ol,.grow4 ol{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:var(--s-6)}
+  .trail svg.path{display:none}
+  .days{grid-template-columns:minmax(0,1fr);gap:0}
+  .days li{padding:var(--s-4) 0;border-top:1px solid var(--line)}
+  .ridge .peak-lbl{font-size:30px}.ridge .peak-cap{font-size:22px}
+  .strip figure.wide{grid-column:span 1}.strip figure.wide img{aspect-ratio:3/4}
+}
+@media (prefers-reduced-motion:reduce){
+  .mac-fig .fl{animation:none;stroke-dasharray:none;stroke-opacity:.5}
+  .close.is-in .seeds i{animation:none}
+}
+</style>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-54VT9MGHJH"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','G-54VT9MGHJH');
+</script>
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1421057743489136');fbq('track','PageView');
+</script>
+<!-- Conversões: abrir a conversa = Contact; ir para o WhatsApp = Lead -->
+<script>
+document.addEventListener('click',function(e){
+  var a=e.target.closest&&e.target.closest('a');if(!a)return;
+  var label=(a.textContent||'').trim().slice(0,80);
+  if(a.hasAttribute('data-conversa-open')){gtag('event','open_conversation',{link_text:label});fbq('track','Contact');}
+  else if(/wa\.me\//.test(a.href)){gtag('event','generate_lead',{method:'whatsapp',link_text:label});fbq('track','Lead');}
+},true);
+</script>
+</head>
+<body>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1421057743489136&ev=PageView&noscript=1" alt=""></noscript>
+
+<a class="c-skip" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="c-nav" id="nav">
+  <div class="c-wrap c-nav__in">
+    <a class="c-brand" href="../" aria-label="Rodrigo Lamin, voltar ao site">
+      <svg viewBox="160 136 704 704" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="44" stroke-linecap="round" stroke-linejoin="round"><line x1="512" y1="178" x2="512" y2="805"/><path d="M512 230L235 275M512 230L789 275M512 350L280 392M512 350L744 392M512 470L326 507M512 470L698 507M512 590L374 621M512 590L650 621"/></g></svg>
+      Rodrigo Lamin
+    </a>
+    <nav aria-label="ALTITUDE"><ul>
+      <li><a href="#experiencia">A experiência</a></li>
+      <li><a href="#lugar">O lugar</a></li>
+      <li><a href="#programacao">Programação</a></li>
+      <li><a href="#participar">Investimento</a></li>
+    </ul></nav>
+    <a class="c-btn c-btn--primary c-btn--small" href="https://wa.me/5548991469196?text=Quero%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20ALTITUDE." target="_blank" rel="noopener">Quero participar</a>
+  </div>
+</header>
+
+<div class="alti" aria-hidden="true"><b id="altV">0 m</b><div class="scale"><i id="altDot"></i></div><span>Urubici · 1.300 m</span></div>
+
+<main id="conteudo">
+
+<section class="hero" id="inicio" aria-labelledby="t-hero" data-no-trail>
+  <div class="photo"><img id="heroImg" src="../design-system/assets/fotos/mar-de-nuvens.webp" alt="Mar de nuvens ao amanhecer sobre a serra, com araucárias em primeiro plano, em Urubici" width="1800" height="1013" fetchpriority="high"></div>
+  <div class="mist" id="mist" aria-hidden="true">
+    <svg class="m3" viewBox="0 0 1024 300"><path stroke-width="34" d="M40 150C230 60 370 230 540 140S820 60 990 140"/></svg>
+    <svg class="m2" viewBox="0 0 1024 300"><path stroke-width="44" d="M20 170C220 70 400 250 560 160S830 80 1000 160"/></svg>
+    <svg class="m1" viewBox="0 0 1024 300"><path stroke-width="56" d="M10 160C240 60 390 260 570 150S850 70 1010 150"/></svg>
+  </div>
+  <div class="c-wrap"><div class="copy">
+    <h1 id="t-hero" class="t-hero">Uma experiência para ganhar <span>perspectiva.</span></h1>
+    <p class="t-lede">ALTITUDE, a imersão dos cultivadores: quatro dias na Serra Catarinense para olhar para si, para o seu negócio e para as decisões do próximo ciclo. Um encontro para empreendedores e líderes, conduzido por Rodrigo Lamin.</p>
+    <div class="actions">
+      <a class="c-btn c-btn--primary" href="https://wa.me/5548991469196?text=Quero%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20ALTITUDE." target="_blank" rel="noopener">Quero viver essa experiência
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 15L15 5M7 5h8v8"/></svg></a>
+      <a class="c-btn c-btn--ghost" href="#lugar">Conhecer o lugar</a>
+    </div>
+    <ul class="facts" aria-label="Resumo">
+      <li>30 de outubro a 2 de novembro</li>
+      <li>Sítio Mar de Nuvens · Urubici, SC</li>
+      <li>Acima de 1.300 metros</li>
+    </ul>
+  </div></div>
+</section>
+
+<section class="sec" id="experiencia" aria-labelledby="t-exp">
+  <div class="c-wrap split">
+    <h2 id="t-exp" class="t-1 c-grow">Há decisões que <span>pedem distância.</span></h2>
+    <div class="stack">
+      <p class="t-lede c-grow" style="color:var(--ink)">Nem sempre o que falta é mais informação. Às vezes, é espaço para reconhecer o que você está construindo, o que sustenta essa construção e o que deseja levar adiante.</p>
+      <p class="c-grow" style="color:var(--ink-2)">O ALTITUDE cria esse espaço: natureza, conversas e trabalho sobre questões reais. Um tempo fora do ritmo da operação para ampliar a perspectiva e fazer escolhas com mais consciência.</p>
+      <p class="who c-grow">Para quem conduz um negócio, vive uma transição ou quer repensar a forma de crescer sem perder de vista o que importa. Um grupo pequeno, de 10 a 15 empresários.</p>
+    </div>
+  </div>
+  <div class="c-wrap"><p class="ask c-grow">O negócio que você está cultivando ainda representa a pessoa que você se tornou?</p></div>
+</section>
+
+<figure class="interlude" aria-label="Amanhecer sobre o mar de nuvens"><img src="../design-system/assets/fotos/altitude/amanhecer.webp" alt="O sol nasce sobre um mar de nuvens que cobre os vales da Serra Catarinense" loading="lazy" width="1800" height="1350"><figcaption>Acima das nuvens, ao amanhecer.</figcaption></figure>
+
+<section class="sec mac" id="arvore" aria-labelledby="t-mac">
+  <div class="c-wrap">
+    <div class="split">
+      <h2 id="t-mac" class="t-1 c-grow">A pessoa e o negócio. <span>O mesmo sistema vivo.</span></h2>
+      <p class="t-lede c-grow">Na natureza, crescimento acontece em relação. A biomimética convida a aprender com os ciclos, os limites e a capacidade de adaptação dos sistemas vivos. No ALTITUDE, a Metodologia da Árvore do Cultivo deixa de ser explicação e vira vivência, em dois dias de trabalho.</p>
+    </div>
+    <div class="mac-fig">
+      <figure class="c-grow">
+        <svg viewBox="-160 -230 320 330" aria-hidden="true"><line class="ground" x1="-160" y1="0" x2="160" y2="0" stroke-width="1.5"/><path class="hy" d="M-6 4 C-40 40 -90 50 -140 44 M6 4 C40 46 90 54 140 40 M0 6 C-6 40 4 70 -2 96"/><g id="figSeed"></g></svg>
+        <span class="day">31 de outubro</span>
+        <h3>O Cultivador. Quem conduz também precisa de cuidado.</h3>
+        <p>História, escolhas, convicções e padrões. Um olhar para as forças que trouxeram você até aqui e para aquilo que precisa mudar no próximo ciclo. Autofeedback, roda de conversa e meditação guiada.</p>
+      </figure>
+      <figure class="c-grow">
+        <svg viewBox="-160 -230 320 330" aria-hidden="true"><line class="ground" x1="-160" y1="0" x2="160" y2="0" stroke-width="1.5"/><path class="hy" d="M-8 4 C-50 50 -100 60 -150 50 M8 4 C50 56 100 64 150 46 M0 6 C-8 46 6 74 -4 98"/><path class="fl" d="M-150 50 C-100 60 -50 50 -8 4 C50 56 100 64 150 46"/><g id="figTree"></g></svg>
+        <span class="day">1 de novembro</span>
+        <h3>A Árvore. O negócio é feito de relações.</h3>
+        <p>Origem, estrutura, vínculos, tensões e frutos. Uma leitura da empresa que conecta propósito, mercado e construção comercial, e que termina em planos de ação.</p>
+      </figure>
+    </div>
+
+    <div class="trail-wrap">
+      <h3 class="c-grow">Quatro gestos que acompanham a subida.</h3>
+      <div class="trail" id="trail">
+        <svg class="path" viewBox="0 0 1200 90" preserveAspectRatio="none" aria-hidden="true"><path class="dash" id="trailPath" d="M28 70 C220 70 260 20 420 30 S700 80 780 40 S1040 10 1172 22"/><path class="walk" id="trailWalk" d="M28 70 C220 70 260 20 420 30 S700 80 780 40 S1040 10 1172 22"/><circle class="walker" id="walker" r="6" cx="28" cy="70"/></svg>
+        <ol>
+          <li><div class="ic"><svg viewBox="0 0 128 128" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M92 38 A38 38 0 1 0 92 90"/><circle cx="64" cy="64" r="5" fill="currentColor"/></svg></div><b>Escutar</b><span>Abrir espaço para perceber a si, o outro e o que o momento pede.</span></li>
+          <li><div class="ic"><svg viewBox="0 0 128 128" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" aria-hidden="true"><circle cx="64" cy="64" r="34"/><circle cx="64" cy="64" r="12" fill="currentColor"/></svg></div><b>Decidir</b><span>Reconhecer o essencial e dar direção às próximas escolhas.</span></li>
+          <li><div class="ic"><svg viewBox="0 0 128 128" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M64 100V56"/><path d="M64 70C64 52 50 40 32 40c0 18 14 30 32 30z"/><path d="M64 60c0-16 12-26 28-26 0 16-12 26-28 26z"/></svg></div><b>Cultivar</b><span>Cuidar das relações e do que precisa ganhar forma no negócio.</span></li>
+          <li><div class="ic"><svg viewBox="0 0 128 128" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M96 64a32 32 0 1 1-9.4-22.6"/><path d="M90 26v16H74"/></svg></div><b>Revisar</b><span>Aprender com o caminho e ajustar o que já não faz sentido.</span></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec place" id="lugar" aria-labelledby="t-lugar">
+  <div class="c-wrap">
+    <div class="head">
+      <h2 id="t-lugar" class="t-1 c-grow">O lugar faz parte <span>da experiência.</span></h2>
+      <p class="t-lede c-grow">Sítio Mar de Nuvens, em Urubici. Entre araucárias, trilhas e vales, a paisagem convida a diminuir o ritmo. Acolhimento e natureza acompanham os quatro dias da imersão.</p>
+    </div>
+  </div>
+  <div class="c-wrap">
+    <div class="strip" id="strip" tabindex="0" aria-label="Fotografias do Sítio Mar de Nuvens">
+      <figure><img src="../design-system/assets/fotos/altitude/cabana.webp" style="object-position:50% 78%" alt="Cabana em formato de A com grandes janelas de vidro, no alto do sítio" loading="lazy" width="1200" height="1800"><figcaption>Cabanas</figcaption></figure>
+      <figure><img src="../design-system/assets/fotos/altitude/contemplacao.webp" alt="Pessoa de costas observando o mar de nuvens entre araucárias" loading="lazy" width="1350" height="1800"><figcaption>Acima das nuvens</figcaption></figure>
+      <figure class="wide"><img src="../design-system/assets/fotos/altitude/espaco-encontros.jpg" alt="Casa de madeira com varanda, usada como espaço de encontros" loading="lazy" width="1400" height="867"><figcaption>Espaço de encontros</figcaption></figure>
+      <figure><img src="../design-system/assets/fotos/altitude/balanco-amanhecer.webp" alt="Balanço no alto do morro, recortado contra o céu laranja do amanhecer e a névoa no vale" loading="lazy" width="1350" height="1800"><figcaption>Amanhecer no mirante</figcaption></figure>
+      <figure class="wide"><img src="../design-system/assets/fotos/altitude/trilhas.jpg" alt="Clareira entre araucárias e árvores altas, com bancos de madeira ao longo da trilha" loading="lazy" width="1400" height="933"><figcaption>Trilhas</figcaption></figure>
+      <figure><img src="../design-system/assets/fotos/altitude/ceu-estrelado.webp" alt="Pessoa com lanterna de cabeça olhando um céu estrelado" loading="lazy" width="1350" height="1800"><figcaption>Céu da serra</figcaption></figure>
+      <figure class="wide"><img src="../design-system/assets/fotos/altitude/mirante.jpg" alt="Mirante com bancos e um balanço sob uma árvore, de frente para o vale" loading="lazy" width="1400" height="933"><figcaption>O mirante</figcaption></figure>
+      <figure><img src="../design-system/assets/fotos/altitude/riacho.jpg" alt="Riacho entre pedras e samambaias, dentro da mata" loading="lazy" width="933" height="1400"><figcaption>Água e silêncio</figcaption></figure>
+      <figure class="wide"><img src="../design-system/assets/fotos/altitude/serra.jpg" alt="Vale coberto de mata atlântica na Serra Catarinense" loading="lazy" width="1400" height="788"><figcaption>A serra</figcaption></figure>
+      <figure><img src="../design-system/assets/fotos/altitude/acolhimento.webp" style="object-position:50% 78%" alt="Chalé de madeira com varanda entre hortênsias e galhos de araucária" loading="lazy" width="1200" height="1800"><figcaption>Acolhimento</figcaption></figure>
+    </div>
+    <div class="strip-nav"><button type="button" id="prev" aria-label="Fotografia anterior"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4l-6 6 6 6"/></svg></button><button type="button" id="next" aria-label="Próxima fotografia"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4l6 6-6 6"/></svg></button></div>
+    <div class="notes">
+      <p class="c-grow"><strong>Um lugar para estar.</strong>Cabanas, espaços de encontro e paisagens que abrem outras conversas.</p>
+      <p class="c-grow"><strong>Tempo para percorrer.</strong>Trilhas, mirantes, água e silêncio para acompanhar o que acontece por dentro.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec grow4" id="crescer" aria-labelledby="t-cres">
+  <div class="c-wrap">
+    <div class="split">
+      <h2 id="t-cres" class="t-1 c-grow">O que merece <span>continuar crescendo?</span></h2>
+      <p class="t-lede c-grow">As questões do seu negócio encontram espaço para serem trabalhadas com profundidade.</p>
+    </div>
+    <svg viewBox="0 -210 1200 230" aria-hidden="true" id="grow4"><line class="ground" x1="0" y1="0" x2="1200" y2="0" stroke-width="1.5"/>
+      <g transform="translate(150 0)"><g data-h="80"></g></g>
+      <g transform="translate(450 0)"><g data-h="110"></g></g>
+      <g transform="translate(750 0)"><g data-h="145"></g></g>
+      <g transform="translate(1050 0)"><g data-h="180" data-accent></g></g>
+    </svg>
+    <ol>
+      <li class="c-grow"><b>Fortalecer</b><span>Reconhecer o valor que já existe e cuidar do que sustenta o negócio.</span></li>
+      <li class="c-grow"><b>Simplificar</b><span>Rever complexidades que consomem energia sem ajudar a crescer.</span></li>
+      <li class="c-grow"><b>Reconectar</b><span>Aproximar quem você é, o que sua empresa oferece e o que o mercado precisa.</span></li>
+      <li class="c-grow"><b>Dar direção</b><span>Organizar prioridades e escolhas para o próximo ciclo de construção.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec prog" id="programacao" aria-labelledby="t-prog">
+  <div class="c-wrap">
+    <div class="split">
+      <h2 id="t-prog" class="t-1 c-grow">Quatro dias. <span>Um novo ponto de vista.</span></h2>
+      <p class="t-lede c-grow">Dois dias centrais de trabalho, com uma chegada para se ambientar e um encerramento para integrar a experiência. De 30 de outubro a 2 de novembro.</p>
+    </div>
+    <div class="ridge" id="ridge">
+      <svg viewBox="0 0 1200 300" aria-hidden="true">
+        <path class="fill" d="M0 290 L150 250 L300 230 L480 170 L620 120 L780 50 L900 110 L1080 210 L1200 250 L1200 300 L0 300Z"/>
+        <path class="line" d="M0 290 L150 250 L300 230 L480 170 L620 120 L780 50 L900 110 L1080 210 L1200 250"/>
+        <path class="lit" id="ridgeLit" d="M0 290 L150 250 L300 230 L480 170 L620 120 L780 50 L900 110 L1080 210 L1200 250"/>
+        <circle class="st" cx="150" cy="250" r="9"/>
+        <circle class="st" cx="480" cy="170" r="9"/>
+        <circle class="st" cx="780" cy="50" r="11"/>
+        <circle class="st" cx="1080" cy="210" r="9"/>
+        <text class="peak-lbl" x="800" y="38">1.300 m</text>
+        <text class="peak-cap" x="800" y="62">Morro da Igreja, Urubici</text>
+      </svg>
+    </div>
+    <ol class="days">
+      <li class="c-grow"><i>30 de outubro</i><b>Chegar</b><p>Check-in, acomodação, boas-vindas, jantar e as primeiras conversas.</p><em>Acolher o encontro</em></li>
+      <li class="c-grow"><i>31 de outubro</i><b>O Cultivador</b><p>História, escolhas, padrões e o seu modo de liderar. Olhar para quem conduz a construção.</p><em>Olhar para si</em></li>
+      <li class="c-grow"><i>1 de novembro</i><b>A Árvore</b><p>Leitura do negócio, relações e decisões. Trabalhar o que precisa de cuidado no próximo ciclo.</p><em>Olhar para o negócio</em></li>
+      <li class="c-grow"><i>2 de novembro</i><b>Integrar</b><p>Check-out e um dia para conhecer Urubici: paisagens, vinícola, almoço, café e boas memórias.</p><em>Levar para a vida</em></li>
+    </ol>
+    <p class="surprise c-grow">Alguns detalhes são melhor vividos do que antecipados. Há espaço para o encontro, para a surpresa e para o ritmo do lugar.</p>
+  </div>
+</section>
+
+<section class="sec lead" id="conduz" aria-labelledby="t-lead">
+  <div class="c-wrap grid">
+    <div class="arch c-grow"><img src="../design-system/assets/fotos/rodrigo-lamin-roda-cor.jpg" alt="Rodrigo Lamin sorrindo, numa Roda de Liderança" loading="lazy" width="952" height="1184"></div>
+    <div class="stack">
+      <h2 id="t-lead" class="t-1 c-grow">Rodrigo Lamin. <span>Empreender, cultivar relações e aprender com a natureza.</span></h2>
+      <p class="t-lede c-grow" style="color:var(--ink)">Cofundador e ex-CEO da Involves, vivi a construção de um negócio que cresceu com pessoas, cultura e relações. Hoje, levo esse repertório para o trabalho com outros empreendedores.</p>
+      <p class="c-grow">A Árvore do Cultivo nasce desse encontro entre experiência empresarial, natureza e comunidade. No ALTITUDE, esse olhar ganha tempo, presença e um lugar para acontecer.</p>
+      <p class="c-grow"><a class="c-link" href="../#trajetoria">Conheça minha trajetória
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5"/></svg></a></p>
+    </div>
+  </div>
+</section>
+
+<section class="sec price" id="participar" aria-labelledby="t-price">
+  <div class="c-wrap grid">
+    <div>
+      <h2 id="t-price" class="t-1 c-grow">Seu próximo ciclo começa com <span>uma escolha.</span></h2>
+      <p class="t-lede c-grow" style="margin-top:var(--s-5)">Quatro dias para cuidar do cultivador e olhar para a árvore que está crescendo.</p>
+      <ul class="incl c-grow">
+        <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Hospedagem incluída</span></li>
+        <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Alimentação incluída</span></li>
+        <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v14M3 10h14"/></svg><span>Transfer Florianópolis ↔ Urubici sob demanda<small>Valores e disponibilidade consultados à parte.</small></span></li>
+      </ul>
+    </div>
+    <div class="ticket c-grow">
+      <p class="cond">Condição inaugural</p>
+      <p class="big">R$ 7.850</p>
+      <p class="for">Para os primeiros 7 participantes. Consulte a disponibilidade dessa condição.</p>
+      <p class="rest"><span>Demais participantes</span><b>R$ 10.900</b></p>
+      <div class="go">
+        <a class="c-btn c-btn--primary" href="https://wa.me/5548991469196?text=Quero%20uma%20vaga%20no%20ALTITUDE." target="_blank" rel="noopener">Quero uma vaga no ALTITUDE
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 15L15 5M7 5h8v8"/></svg></a>
+        <a class="c-btn c-btn--ghost" href="https://wa.me/5548991469196?text=Quero%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20ALTITUDE." target="_blank" rel="noopener">Conversar sobre a imersão</a>
+      </div>
+      <p class="fine">Há possibilidades de parcelamento, a consultar.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec faq" id="duvidas" aria-labelledby="t-faq">
+  <div class="c-wrap">
+    <div class="grid">
+      <h2 id="t-faq" class="t-1 c-grow">Para chegar <span>com clareza.</span></h2>
+      <div class="c-grow">
+        <details><summary>Para quem é o ALTITUDE?<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M10 4v12M4 10h12"/></svg></summary><p>Para empreendedores e líderes que desejam ganhar perspectiva sobre si, seus projetos e as decisões do próximo ciclo. A experiência conecta a pessoa que conduz e o negócio que ela está construindo.</p></details>
+        <details><summary>Como os quatro dias estão organizados?<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M10 4v12M4 10h12"/></svg></summary><p>A chegada acontece em 30 de outubro. Os dias 31 de outubro e 1 de novembro são dedicados ao Cultivador e à Árvore. O dia 2 de novembro reúne o check-out e um encerramento com passeios por Urubici.</p></details>
+        <details><summary>O que está incluído no investimento?<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M10 4v12M4 10h12"/></svg></summary><p>Hospedagem e alimentação. Para conhecer a organização das acomodações e os demais detalhes da estadia, converse com a organização pelo WhatsApp.</p></details>
+        <details><summary>Como funciona o deslocamento?<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M10 4v12M4 10h12"/></svg></summary><p>Há possibilidade de transfer entre Florianópolis e Urubici sob demanda. Os valores e a disponibilidade são consultados separadamente com a organização.</p></details>
+        <details><summary>Posso parcelar o investimento?<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M10 4v12M4 10h12"/></svg></summary><p>Sim, há possibilidades de parcelamento a consultar. Entre em contato para conhecer as condições e a disponibilidade da condição inaugural.</p></details>
+      </div>
+    </div>
+    <div class="more">
+      <div class="c-grow"><h3>O cultivo também acontece em comunidade.</h3><p>Conversas que continuam depois da serra, com empreendedores e líderes da rede.</p><a class="c-link" href="https://chat.whatsapp.com/GYU3rDHtnef7FcLIZSk6EP" target="_blank" rel="noopener">Entrar na comunidade</a></div>
+      <div class="c-grow"><h3>Sua marca pode cultivar este encontro.</h3><p>Para marcas e organizações que se conectam com empreendedorismo, inovação e impacto.</p><a class="c-link" href="https://wa.me/5548991469196?text=Tenho%20interesse%20em%20patrocinar%20o%20ALTITUDE%2C%20como%20funciona%3F" target="_blank" rel="noopener">Conversar sobre uma parceria</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="close" id="cume" data-theme="fogo" aria-labelledby="t-close">
+  <div class="seeds" id="seeds" aria-hidden="true"></div>
+  <div class="c-wrap">
+    <div>
+      <h2 id="t-close" class="c-grow">Ganhar distância. Encontrar direção.</h2>
+      <p class="t-lede c-grow">Do alto, o que importa fica mais claro. E o que você colhe lá em cima volta com você, como semente do próximo ciclo.</p>
+      <div class="actions c-grow">
+        <a class="c-btn c-btn--primary" href="https://wa.me/5548991469196?text=Quero%20uma%20vaga%20no%20ALTITUDE." target="_blank" rel="noopener">Quero uma vaga no ALTITUDE
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 15L15 5M7 5h8v8"/></svg></a>
+        <a class="c-btn c-btn--ghost" href="../">Voltar ao site</a>
+      </div>
+    </div>
+    <svg class="tree" viewBox="-130 -230 260 250" aria-hidden="true"><g id="closeTree"></g></svg>
+  </div>
+</section>
+</main>
+
+<footer><div class="c-wrap" style="border-top:1px solid var(--line)"><span><a href="../">Rodrigo Lamin</a> · ALTITUDE, Imersão dos Cultivadores</span><span>© 2026 Rodrigo Lamin</span></div></footer>
+
+<script src="../design-system/biomimetics.js?v=20261016b"></script>
+<script>
+(function(){
+  var reduce = Cultivo.reduce;
+  Cultivo.nav(document.getElementById('nav'));
+  Cultivo.grow();
+  Cultivo.trail();
+
+  // árvores: semente do Cultivador, árvore do negócio, quatro alturas de crescimento, árvore do cume
+  Cultivo.miniTree(document.getElementById('figSeed'), 11, {height:70, base:4});
+  Cultivo.miniTree(document.getElementById('figTree'), 23, {height:200, base:9, accent:false});
+  document.querySelectorAll('#grow4 [data-h]').forEach(function(g, i){ Cultivo.miniTree(g, 40 + i*9, {height:+g.dataset.h, base:4 + i*1.5, accent:g.hasAttribute('data-accent')}); });
+  Cultivo.miniTree(document.getElementById('closeTree'), 5, {height:220, base:9});
+
+  // altímetro: 0 → 1.300 m ao longo da página
+  var v = document.getElementById('altV'), dot = document.getElementById('altDot'), lastM = -1;
+  function alti(){
+    var max = document.documentElement.scrollHeight - innerHeight, k = max > 0 ? Math.min(1, Math.max(0, scrollY/max)) : 0;
+    var m = Math.round(k*1300/10)*10;
+    if (m !== lastM){ lastM = m; v.textContent = m.toLocaleString('pt-BR') + ' m'; }
+    dot.style.bottom = (k*100).toFixed(2) + '%';
+  }
+
+  // névoa do hero se dissipa ao subir
+  var mist = document.getElementById('mist'), heroImg = document.getElementById('heroImg'), hero = document.getElementById('inicio');
+  function fog(){
+    var h = hero.offsetHeight, k = Math.min(1, Math.max(0, scrollY/(h*.8)));
+    mist.style.opacity = (1 - k).toFixed(3);
+    mist.style.transform = 'translateY(' + (k*-60).toFixed(1) + 'px)';
+    heroImg.style.transform = 'scale(' + (1.06 - k*.06).toFixed(4) + ')';
+  }
+
+  // trilha dos gestos: o caminho se desenha e cada gesto acende ao ser alcançado
+  var trail = document.getElementById('trail'), walk = document.getElementById('trailWalk'), walker = document.getElementById('walker'), steps = trail.querySelectorAll('li'), L = walk.getTotalLength();
+  walk.style.strokeDasharray = L; walk.style.strokeDashoffset = L;
+  function trailUI(){
+    var r = trail.getBoundingClientRect(), k = Math.min(1, Math.max(0, (innerHeight*.85 - r.top)/(innerHeight*.6)));
+    if (reduce) k = 1;
+    walk.style.strokeDashoffset = (L*(1 - k)).toFixed(1);
+    var p = walk.getPointAtLength(L*k); walker.setAttribute('cx', p.x.toFixed(1)); walker.setAttribute('cy', p.y.toFixed(1));
+    steps.forEach(function(s, i){ s.classList.toggle('is-on', k >= i/3.2 + .02); });
+  }
+
+  // perfil da serra: a subida se acende até o cume e desce para Urubici
+  var ridge = document.getElementById('ridge'), lit = document.getElementById('ridgeLit'), sts = ridge.querySelectorAll('.st'), RL = lit.getTotalLength(), stops = [.15, .42, .68, .9];
+  lit.style.strokeDasharray = RL; lit.style.strokeDashoffset = RL;
+  function ridgeUI(){
+    var r = ridge.getBoundingClientRect(), k = Math.min(1, Math.max(0, (innerHeight*.8 - r.top)/(innerHeight*.7)));
+    if (reduce) k = 1;
+    lit.style.strokeDashoffset = (RL*(1 - k)).toFixed(1);
+    sts.forEach(function(s, i){ s.classList.toggle('is-on', k >= stops[i]); });
+  }
+
+  var tk = false;
+  function frame(){ tk = false; alti(); if (!reduce) fog(); trailUI(); ridgeUI(); }
+  addEventListener('scroll', function(){ if (!tk){ tk = true; requestAnimationFrame(frame); } }, {passive:true});
+  addEventListener('resize', frame); frame();
+
+  // galeria
+  var strip = document.getElementById('strip');
+  function by(d){ var f = strip.querySelector('figure'); strip.scrollBy({left:d*(f.offsetWidth + 14)*1.5, behavior: reduce ? 'auto' : 'smooth'}); }
+  document.getElementById('prev').addEventListener('click', function(){ by(-1); });
+  document.getElementById('next').addEventListener('click', function(){ by(1); });
+
+  // fechamento: sementes aladas caem do topo da faixa quando ela entra na tela
+  var seeds = document.getElementById('seeds'), close = document.getElementById('cume');
+  if (!reduce){
+    var n = innerWidth < 760 ? 14 : 30;
+    for (var i = 0; i < n; i++){
+      var s = document.createElement('i'), x = Math.random()*100;
+      s.style.left = x + '%';
+      s.style.setProperty('--d', (6 + Math.random()*6).toFixed(1) + 's');
+      s.style.setProperty('--w', (-Math.random()*8).toFixed(1) + 's');
+      s.style.setProperty('--x', ((Math.random() - .7)*160).toFixed(0) + 'px');
+      s.style.setProperty('--y', (420 + Math.random()*320).toFixed(0) + 'px');
+      s.style.setProperty('--r', ((Math.random() < .5 ? -1 : 1)*(360 + Math.random()*540)).toFixed(0) + 'deg');
+      seeds.appendChild(s);
+    }
+  }
+  new IntersectionObserver(function(es){ close.classList.toggle('is-in', es[0].isIntersecting); }, {threshold:.15}).observe(close);
+})();
+</script>
+</body>
+</html>

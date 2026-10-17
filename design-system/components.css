@@ -1,0 +1,482 @@
+/* Rodrigo Lamin · Design System "Cultivo" v1.0 · componentes
+   Depende de tokens.css. Classes com prefixo c- para não colidir. */
+
+/* ---------- base ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--font-text);font-size:var(--fs-body);line-height:var(--lh-body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+[data-theme]{background:var(--ground);color:var(--ink)}
+::selection{background:var(--c-fogo-400);color:var(--c-fogo-tinta)}
+html{scrollbar-color:var(--c-humus-600) var(--ground)}
+::-webkit-scrollbar{width:10px}::-webkit-scrollbar-track{background:var(--ground)}::-webkit-scrollbar-thumb{background:var(--c-humus-600);border-radius:10px;border:2px solid var(--ground)}
+a{color:inherit;text-underline-offset:.22em;text-decoration-thickness:1px}
+:focus-visible{outline:2px solid var(--focus);outline-offset:4px;border-radius:6px}
+img{max-width:100%;display:block}
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:700;line-height:var(--lh-tight);letter-spacing:var(--track-title);margin:0;text-wrap:balance}
+p{margin:0}
+.c-wrap{max-width:var(--max);margin:0 auto;padding-inline:var(--gutter)}
+.c-section{padding-block:var(--section);position:relative}
+.c-skip{position:absolute;left:-999px}.c-skip:focus{left:16px;top:16px;z-index:60;background:var(--accent);color:var(--on-accent);padding:8px 14px;border-radius:var(--r-pill)}
+
+/* ---------- tipografia ---------- */
+.t-hero{font-size:var(--fs-hero);letter-spacing:-.045em}
+.t-1{font-size:var(--fs-1);letter-spacing:var(--track-display)}
+.t-2{font-size:var(--fs-2);letter-spacing:var(--track-display)}
+.t-3{font-size:var(--fs-3);line-height:var(--lh-snug)}
+.t-4{font-family:var(--font-display);font-weight:600;font-size:var(--fs-4);letter-spacing:-.02em;line-height:var(--lh-snug)}
+.t-lede{font-size:var(--fs-lede);color:var(--ink-2);max-width:var(--measure)}
+.t-body{max-width:var(--measure)}
+.t-muted{color:var(--ink-2)}
+.t-small{font-size:var(--fs-small);color:var(--ink-3);line-height:1.5}
+.t-ui{font-family:var(--font-display);font-size:var(--fs-label);letter-spacing:var(--track-ui)}
+.t-accent{color:var(--accent-text)}
+.t-question{font-style:italic;font-size:var(--fs-4)}
+.t-question::before{content:"“"}.t-question::after{content:"”"}
+
+/* ---------- botões ---------- */
+.c-btn{display:inline-flex;align-items:center;gap:.7em;font-family:var(--font-display);font-weight:600;font-size:17px;letter-spacing:var(--track-ui);text-decoration:none;border-radius:var(--r-pill);padding:16px 26px;border:1px solid transparent;cursor:pointer;transition:background var(--dur-1) var(--ease-out),color var(--dur-1),border-color var(--dur-1),transform var(--dur-2) var(--ease-grow)}
+.c-btn svg{width:18px;height:18px;flex:none}
+.c-btn--primary{background:var(--accent);color:var(--on-accent);box-shadow:var(--shadow-1)}
+.c-btn--primary:hover{background:var(--accent-hover);transform:translateY(-2px)}
+.c-btn--ghost{color:var(--ink);border-color:var(--line-strong);background:transparent}
+.c-btn--ghost:hover{border-color:var(--ink-2);background:color-mix(in srgb,var(--ink) 5%,transparent)}
+.c-btn--small{padding:11px 18px;font-size:15px}
+.c-btn[disabled],.c-btn[aria-disabled="true"]{opacity:.45;pointer-events:none}
+.c-link{font-family:var(--font-display);font-weight:600;color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;gap:.45em;border-bottom:1px solid var(--line-strong);padding-bottom:3px;transition:border-color var(--dur-1),color var(--dur-1)}
+.c-link:hover{border-color:var(--accent-text);color:var(--accent-text)}
+.c-link svg{width:16px;height:16px}
+
+/* ---------- navegação ---------- */
+.c-nav{position:fixed;inset:0 0 auto 0;z-index:40;transition:background var(--dur-2),backdrop-filter var(--dur-2)}
+.c-nav.is-solid{background:color-mix(in srgb,var(--ground) 86%,transparent);backdrop-filter:blur(10px) saturate(1.2);border-bottom:1px solid var(--line)}
+.c-nav__in{display:flex;align-items:center;justify-content:space-between;gap:24px;height:76px}
+.c-brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-family:var(--font-display);font-weight:700;font-size:19px;letter-spacing:-.02em;color:var(--ink)}
+.c-brand svg{width:26px;height:26px;color:var(--accent-text)}
+.c-nav ul{list-style:none;display:flex;gap:30px;margin:0;padding:0;font-family:var(--font-display);font-size:15.5px}
+.c-nav ul a{text-decoration:none;color:var(--ink-2);transition:color var(--dur-1)}
+.c-nav ul a:hover,.c-nav ul a[aria-current]{color:var(--ink)}
+@media (max-width:900px){.c-nav ul{display:none}}
+
+/* ---------- card de campo (linha de solo no topo, sem caixa) ---------- */
+.c-card{border-top:1px solid var(--line-strong);padding-top:var(--s-5);display:flex;flex-direction:column;gap:var(--s-3)}
+.c-card h3{font-size:var(--fs-3)}
+.c-card p{color:var(--ink-2)}
+.c-card__mark{width:44px;height:44px;color:var(--accent-text)}
+.c-card--plot{background:var(--ground-2);border:1px solid var(--line);border-radius:var(--r-m);padding:var(--s-6)}
+
+/* ---------- citação ---------- */
+.c-quote{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--s-5);align-items:start;max-width:44em}
+.c-quote svg{width:40px;height:56px;color:var(--accent-text);margin-top:.3em}
+.c-quote blockquote{margin:0;font-family:var(--font-text);font-style:italic;font-size:clamp(24px,2.6vw,38px);line-height:1.3;letter-spacing:-.01em;text-wrap:balance}
+.c-quote figcaption{grid-column:2;font-family:var(--font-display);font-size:var(--fs-small);color:var(--ink-3)}
+
+/* ---------- número de destaque: marco de altitude ---------- */
+.c-mark{display:inline-flex;flex-direction:column;gap:var(--s-2);padding-left:var(--s-4);border-left:1px solid var(--line-strong)}
+.c-mark b{font-family:var(--font-display);font-weight:700;font-size:clamp(44px,6vw,88px);letter-spacing:-.05em;line-height:.9;font-variant-numeric:tabular-nums}
+.c-mark b small{font-size:.34em;letter-spacing:-.02em;margin-left:.15em;font-weight:600;color:var(--ink-2)}
+.c-mark span{font-size:var(--fs-small);color:var(--ink-2);max-width:18em;line-height:1.45}
+
+/* ---------- timeline em anéis ---------- */
+.c-rings{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(40px,6vw,96px);align-items:center}
+.c-rings__trunk{position:relative;width:100%;max-width:620px;justify-self:center}
+.c-rings__trunk svg{display:block;width:100%;height:auto;overflow:visible}
+.c-rings__trunk .ring{transition:fill var(--dur-2),opacity var(--dur-2)}
+.c-rings__readout{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;pointer-events:none;font-family:var(--font-display)}
+.c-rings__readout b{display:block;font-size:clamp(28px,3.4vw,48px);letter-spacing:-.04em;line-height:1;color:var(--c-osso-100);text-shadow:0 2px 14px rgba(12,9,6,.85)}
+.c-rings__readout span{display:block;margin-top:6px;font-size:var(--fs-label);color:var(--c-osso-300);text-shadow:0 2px 10px rgba(12,9,6,.85)}
+.c-rings__list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.c-rings__list li{border-bottom:1px solid var(--line)}
+.c-rings__list button{all:unset;box-sizing:border-box;width:100%;cursor:pointer;display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:16px;align-items:baseline;padding:16px;border-radius:var(--r-s);transition:background var(--dur-1)}
+.c-rings__list button:hover,.c-rings__list button.is-on{background:color-mix(in srgb,var(--c-fogo-400) 9%,transparent)}
+.c-rings__list button:focus-visible{outline:2px solid var(--focus);outline-offset:-2px}
+.c-rings__list .y{font-family:var(--font-display);font-weight:700;font-size:18px;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.c-rings__list .t{font-size:16.5px;line-height:1.45;color:var(--ink-2)}
+.c-rings__list .v{font-family:var(--font-display);font-weight:600;font-size:16px;color:var(--accent-text);font-variant-numeric:tabular-nums;white-space:nowrap}
+.c-rings__list .is-on .t{color:var(--ink)}
+@media (max-width:900px){.c-rings{grid-template-columns:minmax(0,1fr)}.c-rings__list button{grid-template-columns:72px minmax(0,1fr) auto}}
+
+/* ---------- árvore MAC ---------- */
+.c-mac{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(32px,6vw,96px)}
+.c-mac__tree{position:sticky;top:96px;align-self:start;height:calc(100svh - 140px);max-height:760px;display:flex;align-items:center;justify-content:center}
+.c-mac__tree svg{height:100%;width:auto;max-width:100%;overflow:visible;color:var(--ink)}
+.c-mac__tree .part{transition:stroke var(--dur-2),fill var(--dur-2),opacity var(--dur-2)}
+.c-mac__moves{list-style:none;margin:0;padding:0}
+.c-mac__move{min-height:62svh;display:flex;flex-direction:column;justify-content:center;gap:14px;padding-block:24px;opacity:.38;transition:opacity var(--dur-2)}
+.c-mac__move.is-on{opacity:1}
+.c-mac__move .n{font-family:var(--font-display);font-size:var(--fs-label);font-weight:600;color:var(--accent-text);font-variant-numeric:tabular-nums}
+.c-mac__move h3{font-size:clamp(40px,4.6vw,72px)}
+.c-mac__move h3 small{display:block;font-size:.42em;letter-spacing:-.02em;margin-top:10px;color:var(--ink-2);font-weight:600}
+.c-mac__move p{max-width:30em;color:var(--ink-2)}
+@media (max-width:900px){
+  .c-mac{grid-template-columns:minmax(0,1fr)}
+  .c-mac__tree{top:76px;height:32svh;z-index:2;background:var(--ground);overflow:hidden;padding-block:8px}
+  .c-mac__tree::after{content:"";position:absolute;left:0;right:0;top:100%;height:28px;background:linear-gradient(var(--ground),transparent);pointer-events:none}
+  .c-mac__move{min-height:auto;padding-block:36px;opacity:1}
+}
+
+/* ---------- ciclo dos gestos ---------- */
+.c-cycle{position:relative;width:100%;max-width:520px;aspect-ratio:1;justify-self:center}
+.c-cycle svg.orbit{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.c-cycle .orbit circle.path{fill:none;stroke:var(--ink);stroke-opacity:.2;stroke-width:.4;stroke-dasharray:1 2.4}
+.c-cycle .orbit circle.dot{fill:var(--accent)}
+.c-gesture{position:absolute;width:30%;display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;transform:translate(-50%,-50%)}
+.c-gesture .ic{width:clamp(56px,7vw,84px);aspect-ratio:1;border-radius:50%;display:grid;place-items:center;background:var(--ground-3);border:1px solid var(--line);color:var(--accent-text);transition:background var(--dur-2),color var(--dur-2),transform var(--dur-2) var(--ease-grow)}
+.c-gesture .ic svg{width:58%;height:58%}
+.c-gesture b{font-family:var(--font-display);font-size:clamp(18px,1.6vw,23px);letter-spacing:-.02em}
+.c-gesture span{font-size:var(--fs-label);color:var(--ink-3);line-height:1.35}
+.c-gesture.is-on .ic{background:var(--accent);color:var(--on-accent);transform:scale(1.08)}
+@media (max-width:600px){.c-gesture{width:27%}}
+.c-gesture:nth-of-type(1){left:50%;top:9%}.c-gesture:nth-of-type(2){left:91%;top:50%}.c-gesture:nth-of-type(3){left:50%;top:91%}.c-gesture:nth-of-type(4){left:9%;top:50%}
+@media (max-width:600px){.c-gesture:nth-of-type(2){left:86%}.c-gesture:nth-of-type(4){left:14%}}
+
+/* ---------- percurso (timeline de dias) ---------- */
+.c-route{list-style:none;margin:0;padding:0;position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.c-route::before{content:"";position:absolute;left:0;right:0;top:9px;height:0;border-top:1.5px dashed var(--ink-2);opacity:.6}
+.c-route li{position:relative;padding-top:30px}
+.c-route li::before{content:"";position:absolute;top:3px;left:0;width:13px;height:13px;border-radius:50%;background:var(--ground);border:2px solid var(--accent)}
+.c-route li.is-peak::before{background:var(--accent)}
+.c-route i{display:block;font-style:normal;font-family:var(--font-display);font-size:var(--fs-label);color:var(--accent-text);margin-bottom:4px}
+.c-route b{display:block;font-family:var(--font-display);font-size:clamp(17px,1.5vw,21px);letter-spacing:-.02em}
+.c-route span{display:block;font-size:var(--fs-small);line-height:1.4;color:var(--ink-2);margin-top:6px}
+@media (max-width:900px){.c-route{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:24px}.c-route::before{display:none}}
+
+/* ---------- camadas (Líder, Negócio, Comunidade) ---------- */
+.c-layers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line)}
+.c-layers > div{padding:26px 26px 0 0}
+.c-layers > div + div{padding-left:26px;border-left:1px solid var(--line)}
+.c-layers b{display:block;font-family:var(--font-display);font-size:clamp(26px,2.6vw,38px);letter-spacing:-.03em}
+.c-layers p{margin-top:10px;font-size:16px;color:var(--ink-2);line-height:1.5}
+@media (max-width:900px){.c-layers{grid-template-columns:minmax(0,1fr)}.c-layers > div + div{padding-left:0;border-left:none;border-top:1px solid var(--line)}.c-layers > div{padding-bottom:22px}}
+
+/* ---------- rede micorrízica (canvas) ---------- */
+.c-mycelium{position:absolute;inset:0;width:100%;height:100%;cursor:crosshair}
+
+/* ---------- retrato em arco de copa ---------- */
+.c-portrait{overflow:hidden;border-radius:var(--r-copa);aspect-ratio:960/1706;position:relative}
+.c-portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;filter:grayscale(1) sepia(.42) contrast(1.12) brightness(.8)}
+.c-portrait::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,color-mix(in srgb,var(--ground) 65%,transparent) 80%,var(--ground) 100%)}
+
+/* ---------- revelação por crescimento ---------- */
+.js .c-grow{opacity:0;transform:translateY(26px);transition:opacity var(--dur-3) var(--ease-grow),transform var(--dur-3) var(--ease-grow)}
+.js .c-grow.is-in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js .c-grow{opacity:1;transform:none;transition:none}}
+
+/* ======================= v1.1 · movimento biomimético ======================= */
+
+/* ---------- árvore que cresce (Cultivo.growTree) ---------- */
+.c-tree{overflow:visible}
+.c-tree path,.c-tree ellipse{fill:none;stroke:var(--ink);stroke-linecap:round;stroke-linejoin:round;transition:stroke var(--dur-2) var(--ease-out),fill var(--dur-2)}
+.c-tree .soil{stroke:var(--ink-3)}
+.c-tree .needle{stroke-opacity:.8}
+.c-tree .leafy{transform-box:fill-box;transform-origin:50% 100%}
+.c-tree .leafy .leaf{fill:var(--c-musgo-400);fill-opacity:.85;stroke:none}
+.c-tree .leafy.is-now .leaf{fill:var(--c-musgo-400);stroke:none}
+.c-tree .seed,.c-tree .fruit{transform-box:fill-box;transform-origin:50% 0%}
+.c-tree .seed{transform-origin:50% 50%;fill:color-mix(in srgb,var(--ink) 22%,transparent)}
+.c-tree .fruit ellipse{fill:color-mix(in srgb,var(--ink) 16%,transparent)}
+.c-tree .seedfall{fill:color-mix(in srgb,var(--ink) 30%,transparent);transform-box:fill-box}
+.c-tree .is-now,.c-tree .is-now *{stroke:var(--accent)}
+.c-tree .fruit.is-now ellipse,.c-tree .seed.is-now,.c-tree .seedfall.is-now{fill:color-mix(in srgb,var(--accent) 32%,transparent)}
+
+/* ---------- araucária de fundo (Cultivo.araucaria) ---------- */
+.c-araucaria{position:absolute;pointer-events:none}
+.c-araucaria path{stroke:var(--ink);stroke-opacity:.16}
+
+/* ---------- anéis: a casca e a leitura chegam por último (Cultivo.rings) ---------- */
+.c-rings__readout{transition:none}
+
+/* ---------- floresta nascendo (Cultivo.forest) ---------- */
+.c-forest .sprout{transform-box:fill-box;transform-origin:50% 100%;transition:transform 1s var(--ease-grow),opacity .4s}
+.c-forest.is-pending .sprout:not(.is-up){transform:scaleY(0) scaleX(.6);opacity:0}
+.c-forest [data-label]{transition:opacity var(--dur-3) var(--ease-grow)}
+.c-forest.is-pending [data-label]:not(.is-up){opacity:0}
+.c-forest .flow{animation-play-state:paused;opacity:0;transition:opacity .6s}
+.c-forest.is-live .flow{animation-play-state:running;opacity:1}
+
+/* ---------- botões que brotam ---------- */
+.c-btn{position:relative}
+.c-btn::after{content:"";position:absolute;right:20px;top:-17px;width:18px;height:18px;background:var(--accent-text);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M8.2 18V9.5h1.6V18z'/%3E%3Cpath d='M9 11.2C9 7 6.4 4.6 2 4.6c0 4.2 2.6 6.6 7 6.6z'/%3E%3Cpath d='M9 9.4c0-4.6 2.8-7.4 7.4-7.4 0 4.6-2.8 7.4-7.4 7.4z'/%3E%3C/svg%3E") center/contain no-repeat;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M8.2 18V9.5h1.6V18z'/%3E%3Cpath d='M9 11.2C9 7 6.4 4.6 2 4.6c0 4.2 2.6 6.6 7 6.6z'/%3E%3Cpath d='M9 9.4c0-4.6 2.8-7.4 7.4-7.4 0 4.6-2.8 7.4-7.4 7.4z'/%3E%3C/svg%3E") center/contain no-repeat;
+  transform:scale(0) rotate(-12deg);transform-origin:50% 100%;transition:transform var(--dur-2) var(--ease-grow);pointer-events:none}
+.c-btn:hover::after,.c-btn:focus-visible::after{transform:scale(1) rotate(0)}
+.c-nav .c-btn::after{top:auto;bottom:-17px;transform-origin:50% 0;transform:scale(0) rotate(180deg)}
+.c-nav .c-btn:hover::after,.c-nav .c-btn:focus-visible::after{transform:scale(1) rotate(180deg)}
+
+/* ---------- rastro de micélio do cursor (Cultivo.trail) ---------- */
+.c-trail{position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:35}
+
+@media (prefers-reduced-motion:reduce){
+  .c-btn::after{transition:none}
+  .c-forest .sprout,.c-forest [data-label]{transition:none}
+}
+
+/* ---------- árvore do hero (Cultivo.heroTree) ---------- */
+.c-herotree{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.c-herotree path{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.c-herotree .ht-wood{stroke:var(--ink);stroke-opacity:.92}
+.c-herotree .ht-root{stroke:var(--ink-2);stroke-opacity:.75}
+.c-herotree .ht-leaves{transform-box:fill-box;transform-origin:50% 50%}
+.c-herotree .ht-leaf{fill:var(--c-musgo-400);fill-opacity:.8}
+.c-herotree .ht-leaf-ochre{fill:var(--c-fogo-300);fill-opacity:.55}
+.c-herotree .ht-seed{fill:color-mix(in srgb,var(--accent) 35%,transparent);stroke:var(--accent);stroke-width:2;transform-box:fill-box;transform-origin:50% 50%}
+.c-herotree .ht-fruit{fill:var(--accent);stroke:rgba(29,18,8,.35);stroke-width:1;transform-box:fill-box;transform-origin:50% 0%}
+.c-herotree .ht-seedfly{fill:var(--accent)}
+.c-herotree .ht-trail{stroke:var(--accent);stroke-opacity:.4;stroke-dasharray:none}
+.c-herotree .ht-sprout{transform-box:fill-box;transform-origin:50% 100%}
+.c-herotree .ht-sprout path{stroke:var(--c-musgo-400)}
+.c-herotree .ht-sprout .ht-sleaf{fill:var(--c-musgo-400);stroke:none}
+.c-herotree .ht-label{font-family:var(--font-display);font-size:var(--fs-label);font-weight:600;fill:var(--ink-2)}
+.c-seedfall{position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:30}
+
+/* ---------- um só sistema de árvore: folhas e frutos ---------- */
+.c-tree .leafy .leaf-ochre{fill:var(--c-fogo-300);fill-opacity:.55}
+.c-tree .fruitdot{fill:var(--accent);stroke:rgba(29,18,8,.35);stroke-width:1;transform-box:fill-box;transform-origin:50% 0%}
+.c-tree .fruit.is-now .fruitdot{fill:var(--accent)}
+.mt path{fill:none;stroke:var(--ink);stroke-linecap:round;stroke-linejoin:round}
+.mt.mt-accent path{stroke:var(--accent)}
+.mt .mt-leaf{fill:var(--c-musgo-400);fill-opacity:.85}
+.mt .mt-fruit{fill:var(--accent)}
+
+/* ---------- três camadas como árvore em corte (Cultivo.strata) ----------
+   Líder = raízes e núcleo · Negócio = tronco · Comunidade = copa + rede micorrízica. A camada ativa acende; as outras recuam. */
+.c-strata{--guides:on;position:relative;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:0 clamp(48px,7vw,120px);align-items:stretch}
+.c-strata__fig{margin:0;grid-row:1}
+.c-strata__fig svg{display:block;width:100%;height:auto;overflow:visible}
+.c-strata__list{list-style:none;margin:0;padding:0;display:grid;grid-template-rows:repeat(3,minmax(0,1fr));align-content:stretch}
+.c-strata__item{display:flex;flex-direction:column;justify-content:center;gap:10px;padding:clamp(16px,2vw,28px) 0;outline:none;cursor:default}
+.c-strata__item[data-layer="2"]{grid-row:1}.c-strata__item[data-layer="1"]{grid-row:2}.c-strata__item[data-layer="0"]{grid-row:3}
+.c-strata__item b{font-family:var(--font-display);font-size:clamp(28px,3vw,44px);letter-spacing:var(--track-title);line-height:1.3;display:flex;flex-wrap:wrap;align-items:baseline;gap:0 14px}
+.c-strata__part{font-family:var(--font-text);font-style:italic;font-weight:400;font-size:var(--fs-small);letter-spacing:0;color:var(--ink-3);transition:color var(--dur-2)}
+.c-strata__item p{max-width:32em;color:var(--ink-2);font-size:var(--fs-body);line-height:1.55}
+.c-strata__item b{color:var(--ink-2);transition:color var(--dur-2)}
+.c-strata__item.is-on b{color:var(--ink)}
+.c-strata__item.is-on .c-strata__part{color:var(--accent-text)}
+.c-strata__item:focus-visible b{text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:6px}
+.c-strata__guides{position:absolute;left:0;top:0;pointer-events:none;overflow:visible}
+.st-guide{fill:none;stroke:var(--ink);stroke-opacity:.22;stroke-width:1;stroke-dasharray:2 5;transition:stroke var(--dur-2),stroke-opacity var(--dur-2)}
+.st-guide-dot{fill:var(--ground);stroke:var(--ink);stroke-opacity:.4;stroke-width:1.2;transition:stroke var(--dur-2),fill var(--dur-2)}
+.c-strata[data-active="0"] [data-layer="0"].st-guide,.c-strata[data-active="1"] [data-layer="1"].st-guide,.c-strata[data-active="2"] [data-layer="2"].st-guide{stroke:var(--accent);stroke-opacity:.9;stroke-dasharray:none}
+.c-strata[data-active="0"] [data-layer="0"].st-guide-dot,.c-strata[data-active="1"] [data-layer="1"].st-guide-dot,.c-strata[data-active="2"] [data-layer="2"].st-guide-dot{fill:var(--accent);stroke:var(--accent);stroke-opacity:1}
+/* desenho */
+.c-strata__fig path{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.st-ground{stroke:var(--ink-3);stroke-opacity:.55;stroke-width:1.2}
+.st-root,.st-branch{stroke:var(--ink)}
+.st-root--nb{stroke-opacity:.6}
+.st-trunk{fill:var(--ground-3)!important;stroke:none}
+.st-bark{stroke:var(--ink)}
+.c-strata[data-active="1"] .st-bark{stroke:var(--accent)}
+.st-sap-line{stroke:var(--ink);stroke-opacity:.25}
+.st-sap{stroke:var(--accent);stroke-dasharray:6 60;opacity:0;transition:opacity var(--dur-2)}
+.st-leaf{fill:var(--c-musgo-400);fill-opacity:.85}
+.st-fruit{fill:var(--accent)}
+.st-hypha{stroke:var(--ink);stroke-opacity:.3}
+.st-flow{stroke:var(--accent);stroke-dasharray:3 44;opacity:0;transition:opacity var(--dur-2)}
+.st-core__seed{fill:var(--accent)}
+.st-core__ring{fill:none;stroke:var(--accent);stroke-width:1.4;opacity:0;transform-box:fill-box;transform-origin:center}
+.st-layer{transition:opacity var(--dur-3) var(--ease-out)}
+.c-strata[data-active] .st-layer{opacity:.3}
+.c-strata[data-active="0"] .st-lid,.c-strata[data-active="1"] .st-neg,.c-strata[data-active="2"] .st-com{opacity:1}
+.c-strata[data-active="0"] .st-lid .st-root{stroke:var(--accent)}
+.c-strata[data-active="1"] .st-sap{opacity:1;animation:st-sap 2.4s linear infinite}
+.c-strata[data-active="1"] .st-sap--1{animation-delay:-.8s}.c-strata[data-active="1"] .st-sap--2{animation-delay:-1.6s}
+.c-strata[data-active="2"] .st-flow{opacity:1;animation:st-flow 3.4s linear infinite}
+.c-strata[data-active="2"] .st-flow.b{animation-direction:reverse;animation-duration:4.2s}
+.c-strata[data-active="0"] .st-core__ring{animation:st-ripple 2.6s var(--ease-out) infinite}
+.c-strata[data-active="0"] .st-core__ring.b{animation-delay:1.3s}
+@keyframes st-sap{to{stroke-dashoffset:-66}}
+@keyframes st-ripple{0%{opacity:.9;transform:scale(1)}100%{opacity:0;transform:scale(3.4)}}
+@keyframes st-flow{to{stroke-dashoffset:-47}}
+/* entrada: raízes → tronco → copa */
+.js .c-strata:not(.is-in) .st-layer{opacity:0}
+.js .c-strata .st-lid{transition-delay:0s}.js .c-strata.is-in .st-neg{transition-delay:.25s}.js .c-strata.is-in .st-com{transition-delay:.5s}
+@media (max-width:900px){
+  .c-strata{--guides:off;grid-template-columns:minmax(0,1fr)}
+  .c-strata__fig{max-width:380px;width:100%;justify-self:center;margin-bottom:var(--s-5)}
+  .c-strata__list{grid-row:2;grid-template-rows:none}
+  .c-strata__item[data-layer]{grid-row:auto;padding:var(--s-5) 0;border-top:1px solid var(--line)}
+}
+
+/* ---------- princípios da biomimética (Cultivo.bio) ---------- */
+.bio-list{list-style:none;margin:clamp(48px,6vw,80px) 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(40px,5vw,72px)}
+.c-principle{display:flex;flex-direction:column;gap:12px}
+.c-principle__fig{margin:0 0 var(--s-4);aspect-ratio:320/220}
+.c-principle__fig svg{display:block;width:100%;height:100%;overflow:visible}
+.c-principle > b{font-family:var(--font-display);font-size:clamp(22px,1.9vw,28px);letter-spacing:-.02em;line-height:1.1}
+.c-principle sup{font-family:var(--font-text);font-size:.5em;margin-left:3px;vertical-align:super;line-height:0}
+.c-principle sup a,.bio-notes a{color:var(--accent-text);text-decoration:none}
+.c-principle sup a:hover,.bio-notes a:hover{text-decoration:underline;text-underline-offset:3px}
+.c-principle > p{color:var(--ink-2);font-size:16.5px;line-height:1.55}
+.c-principle__biz{display:grid;grid-template-columns:22px minmax(0,1fr);gap:10px;align-items:start;margin-top:4px;padding-top:14px;border-top:1px solid var(--line);font-size:16.5px;line-height:1.5;color:var(--ink)}
+.c-principle__biz svg{width:22px;height:22px;margin-top:2px;fill:none;stroke:var(--accent);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.c-principle__biz circle{fill:var(--accent);stroke:none}
+.c-principle__biz strong{font-family:var(--font-display);font-weight:600;color:var(--accent-text);margin-right:4px}
+.bio-notes{margin:clamp(40px,5vw,64px) 0 0;padding:20px 0 0 1.2em;border-top:1px solid var(--line);display:grid;gap:6px;font-size:var(--fs-label);line-height:1.5;color:var(--ink-3)}
+.bio-notes li::marker{color:var(--ink-3)}
+.bio-back{margin-left:6px;font-size:13px}
+.bio-notes li:target{color:var(--ink-2)}
+/* ilustrações */
+.c-principle__fig path{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.bi-ground{stroke:var(--ink-3);stroke-opacity:.55;stroke-width:1.2}
+.bi-root{stroke:var(--ink);stroke-width:1.2;stroke-opacity:.75}
+.bi-hypha{stroke:var(--ink);stroke-opacity:.32;stroke-width:1}
+.bi-flow{stroke:var(--accent);stroke-width:2.4;stroke-dasharray:3 60;animation:flow-b 3.2s linear infinite}
+.bi-flow.back{animation-direction:reverse;animation-delay:-1.6s;stroke-dasharray:3 74}
+.bi-flow.b{animation-duration:3.8s}.bi-flow.c{animation-duration:5.2s}
+@keyframes flow-b{to{stroke-dashoffset:-63}}
+.bi-leaf{fill:var(--c-musgo-400);fill-opacity:.88}
+.bi-fruit{fill:var(--accent)}
+.bi-soil{fill:var(--ink-3);fill-opacity:.55}
+.bi-draw{stroke:var(--ink);stroke-width:1.6}
+.bi-stem{stroke:var(--ink);stroke-width:3}
+path.bi-stem{stroke-width:3}
+.bi-sun__disc{fill:var(--accent)}
+.bi-sun__ray{stroke:var(--accent);stroke-width:1.6}
+.bi-beam{stroke:var(--accent);stroke-opacity:.35;stroke-width:1;stroke-dasharray:2 6}
+/* módulos: raízes → solo → tronco → copa */
+[data-bio="grow"] .bi-draw{stroke-dasharray:1;stroke-dashoffset:1}
+[data-bio="grow"] .m2,[data-bio="grow"] .m4{opacity:0}
+[data-bio="grow"] .m4{transform-box:fill-box;transform-origin:50% 100%;transform:scale(.4)}
+[data-bio="grow"].is-in .m1 .bi-draw{stroke-dashoffset:0;transition:stroke-dashoffset .8s var(--ease-grow)}
+[data-bio="grow"].is-in .m2{opacity:1;transition:opacity .5s .6s}
+[data-bio="grow"].is-in .m3 .bi-draw{stroke-dashoffset:0;transition:stroke-dashoffset .9s 1s var(--ease-grow)}
+[data-bio="grow"].is-in .m4{opacity:1;transform:none;transition:opacity .5s 1.7s,transform .9s 1.7s var(--ease-grow)}
+@media (max-width:900px){.bio-list{grid-template-columns:minmax(0,1fr);gap:56px}.c-principle__fig{max-width:440px}}
+@media (prefers-reduced-motion: reduce){
+  .st-sap,.st-flow,.bi-flow,.st-core__ring{animation:none!important}
+  [data-bio="grow"] .bi-draw{stroke-dashoffset:0}[data-bio="grow"] .m2,[data-bio="grow"] .m4{opacity:1;transform:none}
+  .st-layer,.c-strata__item{transition:none}
+}
+
+/* ======================================================================
+   v1.3 · 16/10 — alinhado ao site atual do Lamin
+   ====================================================================== */
+
+/* ---------- marca com legenda ---------- */
+.c-brand__name{display:flex;flex-direction:column;line-height:1.05}
+.c-brand__tag{font-family:var(--font-text);font-style:italic;font-weight:400;font-size:13px;letter-spacing:0;color:var(--ink-2);margin-top:4px}
+@media (max-width:1120px) and (min-width:901px){.c-nav ul{gap:20px}.c-brand__tag{font-size:12px}}
+@media (max-width:400px){.c-brand__tag{display:none}}
+
+/* ---------- dores como árvore sob tensão (.c-tension) ----------
+   Direção = muitos brotos disputando a mesma raiz, até um ser escolhido (poda / dominância apical)
+   Recursos = raízes que perdem seiva pelo caminho
+   Relações = duas árvores que ainda não se tocam até a hifa ligar uma à outra */
+.c-tension{list-style:none;margin:clamp(48px,6vw,80px) 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(32px,5vw,80px)}
+.c-tension__item{display:flex;flex-direction:column;gap:10px}
+.c-tension__fig{margin:0 0 var(--s-4);aspect-ratio:360/240}
+.c-tension__fig svg{display:block;width:100%;height:100%;overflow:visible}
+.c-tension__item h3{font-size:var(--fs-3);letter-spacing:var(--track-title)}
+.c-tension__q{font-family:var(--font-display);font-weight:600;font-size:clamp(19px,1.5vw,22px);line-height:1.25;letter-spacing:-.01em;color:var(--ink)}
+.c-tension__item p:last-child{color:var(--ink-2)}
+.tz-ground{stroke:var(--ink-3);stroke-opacity:.6;stroke-width:1.4;fill:none}
+.tz-wood{fill:none;stroke:var(--ink);stroke-linecap:round;stroke-linejoin:round}
+.tz-root{fill:none;stroke:var(--ink);stroke-opacity:.7;stroke-width:1.4;stroke-linecap:round}
+.tz-leaf{fill:var(--c-musgo-400);fill-opacity:.9}
+.tz-drop{fill:var(--accent)}
+.tz-link{fill:none;stroke:var(--ink);stroke-opacity:.45;stroke-width:1.3;stroke-dasharray:1;stroke-dashoffset:1}
+.tz-pulse{fill:none;stroke:var(--accent);stroke-width:2.6;stroke-linecap:round;stroke-dasharray:3 70;opacity:0}
+/* Direção: os brotos crescem juntos e balançam; depois um é escolhido e os outros recuam */
+.tz-shoot{stroke-dasharray:1;stroke-dashoffset:1;transform-box:view-box;transform-origin:180px 170px}
+.c-tension__fig.is-in .tz-shoot{stroke-dashoffset:0;transition:stroke-dashoffset 1.1s var(--ease-grow),opacity .6s 1.7s,stroke .6s 1.7s;animation:tz-sway 2.8s var(--ease-sap) .9s infinite alternate}
+.c-tension__fig .tz-shoot:nth-child(2n){animation-duration:3.4s}
+.c-tension__fig .tz-tip{opacity:0;transition:opacity .5s 1s}
+.c-tension__fig.is-in .tz-tip{opacity:1}
+.c-tension__fig.is-in .tz-shoot:not(.tz-pick){opacity:.3}
+.c-tension__fig.is-in .tz-tip:not(.tz-pick){opacity:.3;transition:opacity .6s 1.7s}
+.c-tension__fig.is-in .tz-pick{stroke:var(--accent);animation:none}
+.c-tension__fig .tz-pick.tz-tip{fill:var(--accent)}
+@keyframes tz-sway{from{transform:rotate(-2.2deg)}to{transform:rotate(2.2deg)}}
+/* Recursos: gotas de seiva escapam das raízes */
+.c-tension__fig .tz-drop{opacity:0}
+.c-tension__fig.is-in .tz-drop{animation:tz-drip 2.4s var(--ease-out) infinite}
+.c-tension__fig .tz-drop.b{animation-delay:.8s}.c-tension__fig .tz-drop.c{animation-delay:1.6s}
+@keyframes tz-drip{0%{opacity:0;transform:translateY(0)}15%{opacity:1}100%{opacity:0;transform:translateY(26px)}}
+/* Relações: a hifa liga as duas árvores e o nutriente começa a circular */
+.c-tension__fig.is-in .tz-link{stroke-dashoffset:0;transition:stroke-dashoffset 1.4s .5s var(--ease-grow)}
+.c-tension__fig.is-in .tz-pulse{opacity:1;transition:opacity .4s 1.8s;animation:tz-flow 2.8s linear 1.8s infinite}
+.c-tension__fig .tz-pulse.back{animation-direction:reverse;animation-delay:3.2s}
+@keyframes tz-flow{to{stroke-dashoffset:-73}}
+@media (max-width:900px){.c-tension{grid-template-columns:minmax(0,1fr);gap:56px}.c-tension__fig{max-width:440px}}
+
+/* ---------- sequência do método (Aprenda · Aplique · Acompanhe · Ajuste) ---------- */
+.c-seq{list-style:none;margin:clamp(28px,3vw,40px) 0 0;padding:0;display:flex;flex-wrap:wrap;align-items:center;gap:10px 0;font-family:var(--font-display);font-weight:700;font-size:clamp(22px,2.2vw,32px);letter-spacing:-.025em}
+.c-seq li{display:flex;align-items:center}
+.c-seq li + li::before{content:"";width:clamp(22px,2.6vw,40px);height:1.5px;margin:0 14px;background:var(--ink-3);opacity:.6}
+.c-seq li:last-child{color:var(--accent-text)}
+.c-seq svg{width:30px;height:30px;margin-left:12px;color:var(--accent-text)}
+
+/* ---------- etapas clicáveis (.c-steps) ---------- */
+.c-steps{display:flex;flex-wrap:wrap;gap:6px;margin:24px 0 0;padding:12px 0;border-bottom:1px solid var(--line)}
+.c-steps a{font-family:var(--font-display);font-weight:600;font-size:15px;color:var(--ink-2);text-decoration:none;padding:9px 16px;border-radius:var(--r-pill);border:1px solid var(--line);transition:color var(--dur-1),background var(--dur-1),border-color var(--dur-1)}
+.c-steps a:hover{color:var(--ink);border-color:var(--line-strong)}
+.c-steps a[aria-current="step"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+@media (min-width:901px){.c-steps{position:sticky;top:76px;z-index:6;background:var(--ground)}}
+@media (max-width:900px){.c-steps{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-inline:2px}.c-steps a{flex:none}}
+
+/* ---------- caminhos (.c-paths) ---------- */
+.c-paths{margin-top:clamp(40px,5vw,64px);display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);grid-template-rows:auto auto;gap:clamp(20px,2.4vw,32px)}
+.c-path{position:relative;border-radius:var(--r-l);overflow:hidden;padding:clamp(28px,3vw,44px);display:flex;flex-direction:column;gap:14px}
+.c-path h3{font-size:var(--fs-3)}
+.c-path p{color:var(--ink-2)}
+.c-path .c-link{margin-top:auto;align-self:flex-start}
+.c-path--main{grid-row:1/3;background:var(--ground-2);border:1px solid var(--line)}
+.c-path--alt{min-height:300px;color:var(--ink);background:var(--ground)}
+.c-path--alt img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 45%;z-index:0}
+.c-path--alt::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(29,30,43,.15) 0%,rgba(29,30,43,.72) 55%,rgba(29,30,43,.94) 100%)}
+.c-path--alt > *:not(img){position:relative;z-index:2}
+.c-path--alt h3{margin-top:auto}
+.c-path--net{background:var(--ground-2);border:1px solid var(--line)}
+.c-path--net svg{width:100%;max-width:300px;height:auto;overflow:visible}
+@media (max-width:900px){.c-paths{grid-template-columns:minmax(0,1fr)}.c-path--main{grid-row:auto}}
+
+/* ritmo da mentoria: 12 meses, 1 encontro individual e 2 em grupo por mês */
+.c-rhythm{margin:8px 0 4px}
+.c-rhythm svg{display:block;width:100%;height:auto;overflow:visible}
+.c-rhythm .rh-base{stroke:var(--ink-3);stroke-opacity:.6;stroke-width:1.2}
+.c-rhythm .rh-solo{fill:var(--accent)}
+.c-rhythm .rh-group{fill:none;stroke:var(--ink);stroke-width:1.6}
+.c-rhythm .rh-month{font-family:var(--font-display);font-size:11px;fill:var(--ink-3)}
+.js .c-rhythm .rh-col{opacity:0;transform:translateY(8px);transform-box:fill-box}
+.c-rhythm.is-in .rh-col{opacity:1;transform:none;transition:opacity .5s calc(var(--i)*70ms),transform .7s calc(var(--i)*70ms) var(--ease-grow)}
+.c-rhythm__legend{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;border-top:1px solid var(--line);padding-top:18px}
+.c-rhythm__legend b{display:block;font-family:var(--font-display);font-size:clamp(22px,2vw,28px);letter-spacing:-.02em;line-height:1.05}
+.c-rhythm__legend span{display:block;font-size:var(--fs-small);color:var(--ink-2);margin-top:6px;line-height:1.4}
+.c-rhythm__legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:1px}
+.c-rhythm__legend .k-solo i{background:var(--accent)}
+.c-rhythm__legend .k-group i{border:1.6px solid var(--ink)}
+@media (max-width:520px){.c-rhythm__legend{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------- perguntas (.c-faq) ---------- */
+.c-faq{margin-top:clamp(32px,4vw,56px);border-top:1px solid var(--line-strong)}
+.c-faq details{border-bottom:1px solid var(--line-strong)}
+.c-faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:24px 0;font-family:var(--font-display);font-weight:600;font-size:clamp(20px,1.7vw,26px);letter-spacing:-.02em;color:var(--ink)}
+.c-faq summary::-webkit-details-marker{display:none}
+.c-faq summary svg{flex:none;width:28px;height:28px;color:var(--accent-text);transition:transform var(--dur-2) var(--ease-grow)}
+.c-faq details[open] summary svg{transform:rotate(45deg)}
+.c-faq summary:hover{color:var(--accent-text)}
+.c-faq summary:focus-visible{outline:2px solid var(--focus);outline-offset:4px;border-radius:4px}
+.c-faq details p{margin:0 0 28px;max-width:44em;color:var(--ink-2)}
+
+/* ---------- chuva de sementes (.c-seedrain + Cultivo.seedrain) ---------- */
+.c-seedrain{position:relative;overflow:hidden;min-height:300px;pointer-events:none}
+.c-seedrain svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.c-seedrain .sr-seed{color:var(--ink)}
+.c-seedrain .sr-fall{animation:sr-fall var(--d) linear var(--delay) infinite;animation-play-state:paused}
+.c-seedrain .sr-spin{transform-box:fill-box;transform-origin:50% 20%;animation:sr-spin var(--s) var(--ease-sap) var(--delay) infinite alternate;animation-play-state:paused}
+.c-seedrain.is-live .sr-fall,.c-seedrain.is-live .sr-spin{animation-play-state:running}
+.c-seedrain .sr-sprout path{fill:none;stroke:var(--ink);stroke-width:1.6;stroke-linecap:round}
+.c-seedrain .sr-sprout ellipse{fill:var(--c-fogo-tinta)}
+@keyframes sr-fall{0%{transform:translate(0,-40px);opacity:0}8%{opacity:1}50%{transform:translate(var(--sway),calc(var(--h)*.5))}92%{opacity:1}100%{transform:translate(0,calc(var(--h) - 30px));opacity:0}}
+@keyframes sr-spin{from{transform:rotate(-38deg)}to{transform:rotate(38deg)}}
+@media (prefers-reduced-motion: reduce){
+  .tz-shoot,.c-tension__fig .tz-shoot,.c-tension__fig .tz-tip{stroke-dashoffset:0;opacity:1;animation:none!important;transition:none!important}
+  .c-tension__fig .tz-shoot:not(.tz-pick),.c-tension__fig .tz-tip:not(.tz-pick){opacity:.3}
+  .c-tension__fig .tz-pick{stroke:var(--accent)}
+  .c-tension__fig .tz-drop{opacity:1;animation:none!important}
+  .tz-link{stroke-dashoffset:0}.tz-pulse{opacity:1;animation:none!important}
+  .js .c-rhythm .rh-col{opacity:1;transform:none}
+  .c-seedrain .sr-fall,.c-seedrain .sr-spin{animation:none!important}
+  .c-faq summary svg{transition:none}
+}

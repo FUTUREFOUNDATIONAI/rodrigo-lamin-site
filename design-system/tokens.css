@@ -1,0 +1,161 @@
+/* Rodrigo Lamin · Design System "Cultivo" v1.0 · tokens
+   Uso: <link rel="stylesheet" href="design-system/tokens.css">
+   Tema: claro (névoa) é o padrão; escuro (solo) por [data-theme="solo"] ou pela preferência do sistema.
+   Qualquer seção pode trocar de tema localmente com data-theme="solo" | "nevoa" | "noite" | "fogo". */
+
+@font-face{font-family:"Familjen Grotesk";src:url(assets/fonts/familjen-grotesk.woff2) format("woff2");font-weight:400 700;font-display:swap}
+@font-face{font-family:"Spectral";src:url(assets/fonts/spectral-400.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Spectral";src:url(assets/fonts/spectral-400i.woff2) format("woff2");font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:"Spectral";src:url(assets/fonts/spectral-500.woff2) format("woff2");font-weight:500;font-display:swap}
+
+:root{
+  /* ---------- primitivos ---------- */
+  /* solo: o chão onde a rede vive */
+  --c-humus-950:#120e0b;
+  --c-humus-900:#17120e;
+  --c-humus-800:#201912;
+  --c-humus-700:#2b2118;
+  --c-humus-600:#3a2c20;
+  /* noite e floresta: herdados do ALTITUDE (#202130, #2b2d3b) */
+  --c-noite-900:#1d1e2b;
+  --c-noite-700:#2b2d3b;
+  /* osso: os filamentos de micélio */
+  --c-osso-100:#efe4cf;
+  --c-osso-300:#cdbfa6;
+  --c-osso-500:#9c8e78;
+  /* névoa: o papel atual (#f4f1eb), mantido */
+  --c-nevoa-50:#f7f4ee;
+  --c-nevoa-100:#f4f1eb;
+  --c-nevoa-200:#e9e3d8;
+  --c-nevoa-300:#d9d5cc;
+  --c-tinta-900:#202130;
+  --c-tinta-600:#5c5a55;
+  /* fogo: evolução do dourado da marca (#d5b061 → âmbar que pulsa) */
+  --c-fogo-300:#f6b96a;
+  --c-fogo-400:#f0a14a;
+  --c-fogo-500:#e08a2e;
+  --c-ouro-legado:#d5b061;
+  --c-ouro-700:#8a6418;   /* o #967226 da marca, escurecido para texto em papel (AA) */
+  --c-fogo-tinta:#1d1208; /* texto sobre fogo */
+  /* musgo: folhagem viva das ilustrações (não é cor de texto) */
+  --c-musgo-400:#8a9a5b;
+  --c-musgo-600:#5f6d3a;
+  /* sub-marca Gigante do PDV: só dentro de contexto Gigante */
+  --c-gigante-marinho:#1e2543;
+  --c-gigante-musgo:#54b275;
+  --c-gigante-menta:#f0fff5;
+
+  /* ---------- tipografia ---------- */
+  --font-display:"Familjen Grotesk","Helvetica Neue",Arial,sans-serif;
+  --font-text:"Spectral",Georgia,"Times New Roman",serif;
+  --fs-hero:clamp(54px,8.6vw,132px);
+  --fs-1:clamp(42px,6vw,92px);
+  --fs-2:clamp(34px,4.4vw,64px);
+  --fs-3:clamp(24px,2.4vw,34px);
+  --fs-4:clamp(19px,1.5vw,22px);
+  --fs-lede:clamp(18px,1.45vw,22px);
+  --fs-body:clamp(17px,1.15vw,19px);
+  --fs-small:15px;
+  --fs-label:14px;
+  --lh-tight:.95;
+  --lh-snug:1.2;
+  --lh-body:1.6;
+  --track-display:-.04em;
+  --track-title:-.03em;
+  --track-ui:-.01em;
+  --measure:34em;
+
+  /* ---------- espaço (base 4) ---------- */
+  --s-1:4px; --s-2:8px; --s-3:12px; --s-4:16px; --s-5:24px; --s-6:32px;
+  --s-7:48px; --s-8:64px; --s-9:96px; --s-10:128px;
+  --gutter:clamp(16px,4vw,56px);
+  --section:clamp(96px,14vw,180px);
+  --max:1360px;
+
+  /* ---------- forma ---------- */
+  --r-s:6px; --r-m:14px; --r-l:24px; --r-pill:999px;
+  --r-copa:999px 999px 0 0; /* arco de copa: retrato, portais */
+  --stroke-line:1px;
+  --stroke-filament:1.2px;
+  --stroke-icon:7; /* em viewBox 128, como os ícones da marca */
+
+  /* ---------- profundidade (neutra, sem halo colorido) ---------- */
+  --shadow-1:0 1px 2px rgba(12,9,6,.22),0 6px 18px -10px rgba(12,9,6,.45);
+  --shadow-2:0 2px 4px rgba(12,9,6,.2),0 18px 40px -18px rgba(12,9,6,.6);
+
+  /* ---------- movimento ---------- */
+  --ease-grow:cubic-bezier(.16,1,.3,1);   /* crescimento: rápido no começo, assenta devagar */
+  --ease-out:cubic-bezier(.2,.8,.2,1);
+  --ease-sap:cubic-bezier(.45,0,.55,1);   /* seiva: vai e volta, ciclos */
+  --dur-1:.2s; --dur-2:.45s; --dur-3:.9s; --dur-cycle:1.6s;
+  --pulse-step:520ms; /* intervalo entre pulsos de nutriente */
+
+  /* ---------- semânticos: tema névoa (claro) ---------- */
+  --ground:var(--c-nevoa-100);
+  --ground-2:var(--c-nevoa-50);
+  --ground-3:var(--c-nevoa-200);
+  --ink:var(--c-tinta-900);
+  --ink-2:#4a4844;
+  --ink-3:#6b675f;
+  --line:rgba(32,33,48,.14);
+  --line-strong:rgba(32,33,48,.32);
+  --accent:var(--c-fogo-400);
+  --accent-hover:var(--c-fogo-300);
+  --on-accent:var(--c-fogo-tinta);
+  --accent-text:var(--c-ouro-700);
+  --filament:32,33,48;      /* RGB para canvas */
+  --pulse:224,138,46;
+  --focus:var(--c-fogo-500);
+  color-scheme:light;
+}
+
+/* ---------- tema solo (escuro) ---------- */
+[data-theme="solo"]{
+  --ground:var(--c-humus-900);
+  --ground-2:var(--c-humus-800);
+  --ground-3:var(--c-humus-700);
+  --ink:var(--c-osso-100);
+  --ink-2:var(--c-osso-300);
+  --ink-3:#b0a28b;
+  --line:rgba(239,228,207,.16);
+  --line-strong:rgba(239,228,207,.34);
+  --accent:var(--c-fogo-400);
+  --accent-hover:var(--c-fogo-300);
+  --on-accent:var(--c-fogo-tinta);
+  --accent-text:var(--c-fogo-400);
+  --filament:239,228,207;
+  --pulse:240,161,74;
+  --focus:var(--c-fogo-400);
+  color-scheme:dark;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="nevoa"]){
+    --ground:var(--c-humus-900); --ground-2:var(--c-humus-800); --ground-3:var(--c-humus-700);
+    --ink:var(--c-osso-100); --ink-2:var(--c-osso-300); --ink-3:#b0a28b;
+    --line:rgba(239,228,207,.16); --line-strong:rgba(239,228,207,.34);
+    --accent-text:var(--c-fogo-400); --filament:239,228,207; --pulse:240,161,74; --focus:var(--c-fogo-400);
+    color-scheme:dark;
+  }
+}
+/* ---------- tema noite (ALTITUDE, céu da serra) ---------- */
+[data-theme="noite"]{
+  --ground:var(--c-noite-900);
+  --ground-2:var(--c-noite-700);
+  --ground-3:#363849;
+  --ink:#f4f1eb; --ink-2:#cfcbc2; --ink-3:#a29e95;
+  --line:rgba(244,241,235,.16); --line-strong:rgba(244,241,235,.34);
+  --accent:var(--c-fogo-400); --accent-hover:var(--c-fogo-300); --on-accent:var(--c-fogo-tinta);
+  --accent-text:var(--c-fogo-400); --filament:244,241,235; --pulse:240,161,74; --focus:var(--c-fogo-400);
+  color-scheme:dark;
+}
+/* ---------- tema fogo (fechamentos, um por página) ---------- */
+[data-theme="fogo"]{
+  --ground:var(--c-fogo-400);
+  --ground-2:var(--c-fogo-300);
+  --ground-3:var(--c-fogo-500);
+  --ink:var(--c-fogo-tinta); --ink-2:#3b2410; --ink-3:#5a3a18;
+  --line:rgba(29,18,8,.2); --line-strong:rgba(29,18,8,.4);
+  --accent:var(--c-fogo-tinta); --accent-hover:#2f1d0d; --on-accent:var(--c-osso-100);
+  --accent-text:var(--c-fogo-tinta); --filament:29,18,8; --pulse:29,18,8; --focus:var(--c-fogo-tinta);
+  color-scheme:light;
+}
